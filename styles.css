@@ -14,7 +14,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Font Awesome icons */
+/* Font Awesome icons - Latest version */
 .fas, .fab, .far, .fa {
     font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif;
     font-weight: 400;
@@ -30,25 +30,98 @@ i[class*="fa-"] {
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    min-width: 1.2em;
+    min-height: 1.2em;
+    position: relative;
 }
 
+/* Fallback emojis for critical icons */
+.fa-music::after { content: "🎵"; }
+.fa-heart::after { content: "❤️"; }
+.fa-comments::after { content: "💬"; }
+.fa-robot::after { content: "🤖"; }
+.fa-headphones-alt::after { content: "🎧"; }
+.fa-fire::after { content: "🔥"; }
+.fa-magic::after { content: "✨"; }
+.fa-record-vinyl::after { content: "💿"; }
+.fa-music-note::after { content: "♪"; }
+.fa-sparkles::after { content: "✨"; }
+
+/* Core Icons */
 .fa-music::before { content: "\f001"; }
 .fa-heart::before { content: "\f004"; }
 .fa-hand-pointer::before { content: "\f25a"; }
 .fa-comments::before { content: "\f086"; }
-.fa-smile-beam::before { content: "\f5b8"; }
 .fa-search::before { content: "\f002"; }
 .fa-user::before { content: "\f007"; }
-.fa-spotify::before { content: "\f1bc"; }
-.fa-bandcamp::before { content: "\f2d5"; }
 .fa-bars::before { content: "\f0c9"; }
 .fa-times::before { content: "\f00d"; }
 .fa-arrow-up::before { content: "\f062"; }
+
+/* Music Platform Icons */
+.fa-spotify::before { content: "\f1bc"; }
+.fa-bandcamp::before { content: "\f2d5"; }
+.fa-soundcloud::before { content: "\f1be"; }
+.fa-youtube::before { content: "\f167"; }
+.fa-apple::before { content: "\f179"; }
+.fa-play::before { content: "\f04b"; }
+.fa-pause::before { content: "\f04c"; }
+.fa-forward::before { content: "\f04e"; }
+.fa-backward::before { content: "\f04a"; }
+.fa-volume-up::before { content: "\f028"; }
+.fa-volume-down::before { content: "\f027"; }
+.fa-volume-mute::before { content: "\f6a9"; }
+.fa-record-vinyl::before { content: "\f8d9"; }
+.fa-microphone::before { content: "\f130"; }
+.fa-microphone-alt::before { content: "\f3c9"; }
+.fa-guitar::before { content: "\f7a6"; }
+.fa-drum::before { content: "\f569"; }
+.fa-headphones::before { content: "\f025"; }
+.fa-radio::before { content: "\f8d7"; }
+.fa-music-note::before { content: "\f8d8"; }
+.fa-waveform::before { content: "\f8f1"; }
+
+/* UI & Interaction Icons */
 .fa-whatsapp::before { content: "\f232"; }
 .fa-robot::before { content: "\f544"; }
 .fa-brain::before { content: "\f5dc"; }
 .fa-paper-plane::before { content: "\f1d8"; }
 .fa-shield-alt::before { content: "\f3ed"; }
+.fa-star::before { content: "\f005"; }
+.fa-thumbs-up::before { content: "\f164"; }
+.fa-thumbs-down::before { content: "\f165"; }
+.fa-share::before { content: "\f064"; }
+.fa-download::before { content: "\f019"; }
+.fa-upload::before { content: "\f093"; }
+.fa-eye::before { content: "\f06e"; }
+.fa-heart-broken::before { content: "\f7a9"; }
+.fa-smile::before { content: "\f118"; }
+.fa-grin::before { content: "\f580"; }
+.fa-laugh::before { content: "\f599"; }
+
+/* Modern Cool Icons */
+.fa-fire::before { content: "\f06d"; }
+.fa-flame::before { content: "\f6df"; }
+.fa-bolt::before { content: "\f0e7"; }
+.fa-sparkles::before { content: "\f890"; }
+.fa-magic::before { content: "\f0d0"; }
+.fa-wand-magic::before { content: "\f72b"; }
+.fa-palette::before { content: "\f53f"; }
+.fa-paint-brush::before { content: "\f1fc"; }
+.fa-music-rainbow::before { content: "\e9e1"; }
+.fa-vr-cardboard::before { content: "\f729"; }
+.fa-headphones-alt::before { content: "\f58f"; }
+.fa-compact-disc::before { content: "\f51f"; }
+.fa-drum-steelpan::before { content: "\f56a"; }
+.fa-sliders-h::before { content: "\f1de"; }
+.fa-random::before { content: "\f074"; }
+.fa-redo::before { content: "\f01e"; }
+.fa-undo::before { content: "\f0e2"; }
+.fa-repeat::before { content: "\f363"; }
+.fa-infinity::before { content: "\f534"; }
+.fa-crown::before { content: "\f521"; }
+.fa-diamond::before { content: "\f219"; }
+.fa-gem::before { content: "\f3a5"; }
 
 body {
     background-color: var(--dark);
@@ -2345,6 +2418,24 @@ a {
     font-size: 0.8rem;
     opacity: 0;
     z-index: -1;
+}
+
+/* Enhanced icon fallbacks */
+i[class*="fa-"]::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.8rem;
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Show fallback if Font Awesome fails to load */
+i[class*="fa-"]:empty::after {
+    opacity: 1 !important;
+    z-index: 1 !important;
 }
 
 

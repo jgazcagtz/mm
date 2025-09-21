@@ -88,8 +88,6 @@ html { font-size: 14px; }
     padding: 0 20px;
     position: relative;
     z-index: 1;
-    display: block;
-    visibility: visible;
 }
 
 .skip-link {
@@ -121,8 +119,6 @@ header {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    display: block;
-    visibility: visible;
 }
 
 nav {
@@ -152,6 +148,7 @@ nav {
     display: flex;
     align-items: center;
     text-decoration: none;
+    visibility: visible;
 }
 
 .logo i {
@@ -182,8 +179,6 @@ nav {
     font-weight: 700;
     color: white;
     text-decoration: none;
-    position: relative;
-    z-index: 2;
 }
 
 .nav-toggle {
@@ -217,13 +212,11 @@ nav {
 }
 
 .nav-links a {
-    color: white !important;
+    color: white;
     text-decoration: none;
     font-weight: 500;
     transition: var(--transition);
     display: block;
-    visibility: visible;
-    opacity: 1;
     font-size: 1rem;
     line-height: 1.4;
     padding: 8px 0;
@@ -234,9 +227,9 @@ nav {
 }
 
 .btn {
-    display: inline-block !important;
+    display: inline-block;
     background: var(--accent);
-    color: var(--dark) !important;
+    color: var(--dark);
     padding: 12px 25px;
     border-radius: 30px;
     text-decoration: none;
@@ -248,7 +241,6 @@ nav {
     overflow: hidden;
     min-height: 44px;
     min-width: 44px;
-    visibility: visible;
     font-size: 1rem;
     line-height: 1.4;
     text-align: center;
@@ -381,8 +373,6 @@ nav {
     -webkit-text-fill-color: transparent;
     line-height: 1.1;
     letter-spacing: -0.02em;
-    display: block !important;
-    visibility: visible !important;
     /* Fallback for browsers that don't support background-clip */
     color: var(--light);
 }
@@ -393,9 +383,6 @@ nav {
     margin: 0 auto 32px;
     color: #ccc;
     line-height: 1.6;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1;
 }
 
 /* Section Styles */
@@ -403,8 +390,6 @@ section {
     padding: 80px 0;
     position: relative;
     z-index: 1;
-    display: block;
-    visibility: visible;
 }
 
 /* Add subtle pattern overlay to sections */
@@ -430,18 +415,12 @@ section::before {
     position: relative;
 }
 
-.section-title {
-    display: block !important;
-    visibility: visible !important;
-}
-
 .section-title h2 {
     font-size: clamp(2rem, 6vw, 2.5rem);
     margin-bottom: 15px;
     color: white;
     position: relative;
     display: inline-block;
-    visibility: visible !important;
 }
 
 .section-title h2::before {
@@ -788,8 +767,6 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
     z-index: 1;
-    display: block;
-    visibility: visible;
 }
 
 footer::before {
@@ -816,11 +793,9 @@ footer::before {
 
 .copyright {
     margin-top: 20px;
-    color: #888 !important;
+    color: #888;
     font-size: 0.9rem;
     opacity: 0.8;
-    display: block;
-    visibility: visible;
 }
 
 .copyright:hover {
@@ -1114,13 +1089,9 @@ footer::before {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
     overflow: hidden;
-    opacity: 1; /* Show immediately */
-    transform: translateY(0);
-    animation: whatsappSlideIn 0.6s ease-out 0.5s forwards;
-    display: flex !important;
+    display: flex;
     align-items: center;
     justify-content: center;
-    visibility: visible;
 }
 
 .whatsapp-widget:hover {
@@ -1171,15 +1142,11 @@ footer::before {
     box-shadow: 0 8px 32px rgba(255, 107, 107, 0.3);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
-    opacity: 1; /* Show immediately */
-    transform: translateY(0);
-    animation: chatbotSlideIn 0.6s ease-out 1s forwards;
-    display: flex !important;
+    display: flex;
     align-items: center;
     justify-content: center;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
-    visibility: visible;
 }
 
 .chatbot-toggle:hover {
@@ -1259,21 +1226,15 @@ footer::before {
 
 .chatbot-info h3 {
     margin: 0;
-    color: white !important;
+    color: white;
     font-size: 1.125rem;
     font-weight: 600;
-    display: block;
-    visibility: visible;
-    opacity: 1;
 }
 
 .chatbot-info p {
     margin: 4px 0 0;
-    color: rgba(255, 255, 255, 0.7) !important;
+    color: rgba(255, 255, 255, 0.7);
     font-size: 0.875rem;
-    display: block;
-    visibility: visible;
-    opacity: 1;
 }
 
 .chatbot-close {
@@ -1345,15 +1306,12 @@ footer::before {
     background: rgba(255, 255, 255, 0.05);
     padding: 12px 16px;
     border-radius: 18px;
-    color: white !important;
+    color: white;
     line-height: 1.5;
     max-width: 80%;
     border: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
     animation: messageSlideIn 0.3s ease-out;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1;
     font-weight: 400;
     word-wrap: break-word;
 }
@@ -1533,17 +1491,15 @@ footer::before {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     padding: 10px 12px;
-    color: white !important;
+    color: white;
     font-size: 0.8rem;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-align: center;
     min-height: 40px;
-    display: flex !important;
+    display: flex;
     align-items: center;
     justify-content: center;
-    visibility: visible;
-    opacity: 1;
     font-weight: 400;
     line-height: 1.4;
 }
@@ -1880,7 +1836,7 @@ body {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Ensure main page elements are always visible */
+/* Main page elements */
 .main-content,
 .container,
 section,
@@ -1888,48 +1844,21 @@ header,
 footer {
     position: relative;
     z-index: 1;
-    display: block !important;
-    visibility: visible !important;
+    display: block;
+    visibility: visible;
 }
 
-/* Force visibility for all elements */
-* {
-    visibility: visible !important;
-    opacity: 1 !important;
-    display: block !important;
-}
+/* Remove aggressive overrides that break layout */
 
-/* Override specific elements that need different display */
-span, a, i, button {
-    display: inline !important;
-}
+/* Remove aggressive text overrides */
 
-li {
-    display: list-item !important;
-}
-
-img {
-    display: inline-block !important;
-}
-
-/* Ensure text is always readable */
-h1, h2, h3, h4, h5, h6, p, span, a, div, button, li {
-    color: var(--light) !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: relative !important;
-    z-index: 1 !important;
-}
-
-/* Ensure all text elements are visible */
+/* Clean typography styles */
 h1, h2, h3, h4, h5, h6 {
     color: var(--light);
     font-weight: 600;
     line-height: 1.2;
     margin: 0;
     padding: 0;
-    display: block;
-    visibility: visible;
 }
 
 p {
@@ -1937,33 +1866,22 @@ p {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    display: block;
-    visibility: visible;
-    opacity: 1;
 }
 
 a {
     color: var(--accent);
     text-decoration: none;
-    display: inline;
-    visibility: visible;
-}
-
-span, div {
-    visibility: visible;
-    display: block;
 }
 
 /* Main content wrapper */
 .main-content {
     position: relative;
     z-index: 1;
-    display: block !important;
-    visibility: visible !important;
+    display: block;
+    visibility: visible;
     min-height: 100vh;
     width: 100%;
     overflow: visible;
-    /* Ensure text content is visible */
     color: var(--light);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

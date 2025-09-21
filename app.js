@@ -613,6 +613,26 @@ const addMessageWithTimestamp = (content, isUser = false) => {
 document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ Moodmatch app loaded successfully!');
 
+    // Check Font Awesome loading
+    setTimeout(() => {
+        const testIcon = document.createElement('i');
+        testIcon.className = 'fas fa-music';
+        testIcon.style.position = 'absolute';
+        testIcon.style.left = '-9999px';
+        testIcon.style.top = '-9999px';
+        document.body.appendChild(testIcon);
+
+        const computedStyle = window.getComputedStyle(testIcon);
+        const fontFamily = computedStyle.fontFamily;
+
+        if (!fontFamily.includes('Font Awesome')) {
+            console.log('⚠️ Font Awesome not loaded, using fallbacks');
+            document.body.classList.add('fa-fallback');
+        }
+
+        document.body.removeChild(testIcon);
+    }, 1000);
+
     // Test chatbot functionality
     if (chatbotToggle && chatbotContainer) {
         console.log('✅ Chatbot elements found and ready');

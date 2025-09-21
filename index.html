@@ -14,9 +14,36 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin>
+    <!-- Alternative CDN source -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css" crossorigin>
     <!-- Fallback Font Awesome CSS -->
     <style>
         @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+        @import url('https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css');
+
+        /* Font Awesome CSS fallback if CDN fails */
+        .fa::before {
+            font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Show text fallbacks if Font Awesome completely fails */
+        .fa-times::before { content: "✕"; }
+        .fa-bars::before { content: "☰"; }
+        .fa-arrow-up::before { content: "↑"; }
+        .fa-comments::before { content: "💬"; }
+        .fa-music::before { content: "♪"; }
+        .fab.fa-whatsapp::before { content: "📱"; }
+        .fa-robot::before { content: "🤖"; }
+        .fa-chevron-down::before { content: "▼"; }
+
+        /* Font loading detection */
+        @font-face {
+            font-family: 'FontAwesomeTest';
+            src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2') format('woff2');
+        }
     </style>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -295,7 +322,7 @@
                     🎤 <strong>Herramientas para artistas</strong><br>
                     💰 <strong>Planes y precios</strong><br>
                     🎉 <strong>Eventos y actividades</strong><br><br>
-                    ¡Selecciona una categoría arriba para comenzar!
+                    ¡Selecciona una categoría abajo para comenzar!
                 </div>
             </div>
         </div>

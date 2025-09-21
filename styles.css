@@ -2411,4 +2411,101 @@ a {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Critical icon fallbacks - text-based */
+.chatbot-close::before {
+    content: "✕";
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.nav-toggle::before {
+    content: "☰";
+    font-family: Arial, sans-serif;
+    font-size: 1.2rem;
+}
+
+.back-to-top::before {
+    content: "↑";
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+}
+
+/* Show text fallbacks if Font Awesome fails */
+i[class*="fa-"]:empty::before {
+    font-family: Arial, sans-serif !important;
+    font-weight: bold !important;
+}
+
+/* Specific critical icons */
+.fa-times::before {
+    content: "✕";
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.fa-bars::before {
+    content: "☰";
+    font-family: Arial, sans-serif;
+    font-size: 1.2rem;
+}
+
+.fa-arrow-up::before {
+    content: "↑";
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+}
+
+.fa-comments::before {
+    content: "💬";
+    font-family: Arial, sans-serif;
+    font-size: 1.2rem;
+}
+
+.fa-music::before {
+    content: "♪";
+    font-family: Arial, sans-serif;
+    font-size: 1.2rem;
+}
+
+.fab.fa-whatsapp::before {
+    content: "📱";
+    font-family: Arial, sans-serif;
+    font-size: 1.2rem;
+}
+
+.fa-robot::before {
+    content: "🤖";
+    font-family: Arial, sans-serif;
+    font-size: 1.2rem;
+}
+
+.fa-chevron-down::before {
+    content: "▼";
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+}
+
+/* Fallback mode when Font Awesome fails */
+body.fa-fallback .fa-times::before,
+body.fa-fallback .fa-bars::before,
+body.fa-fallback .fa-arrow-up::before,
+body.fa-fallback .fa-comments::before,
+body.fa-fallback .fa-music::before,
+body.fa-fallback .fab.fa-whatsapp::before,
+body.fa-fallback .fa-robot::before,
+body.fa-fallback .fa-chevron-down::before {
+    font-family: Arial, sans-serif !important;
+}
+
+body.fa-fallback .fa-times::before { content: "✕" !important; }
+body.fa-fallback .fa-bars::before { content: "☰" !important; }
+body.fa-fallback .fa-arrow-up::before { content: "↑" !important; }
+body.fa-fallback .fa-comments::before { content: "💬" !important; }
+body.fa-fallback .fa-music::before { content: "♪" !important; }
+body.fa-fallback .fab.fa-whatsapp::before { content: "📱" !important; }
+body.fa-fallback .fa-robot::before { content: "🤖" !important; }
+body.fa-fallback .fa-chevron-down::before { content: "▼" !important; }
+
 

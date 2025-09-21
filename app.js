@@ -121,8 +121,57 @@ if (revealItems.length && !prefersReducedMotion && 'IntersectionObserver' in win
                 obs.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.15 });
+    }, {
+        threshold: window.innerWidth <= 768 ? 0.1 : 0.15,
+        rootMargin: window.innerWidth <= 768 ? '50px' : '0px'
+    });
     revealItems.forEach(el => revealObserver.observe(el));
+}
+
+// Mobile touch improvements
+if ('ontouchstart' in window) {
+    // Add touch feedback for interactive elements
+    document.querySelectorAll('.feature-card, .event-card, .app-card').forEach(card => {
+        card.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(0.98)';
+        });
+
+        card.addEventListener('touchend', function() {
+            this.style.transform = '';
+        });
+    });
+
+    // Prevent zoom on double tap for buttons
+    document.querySelectorAll('.btn').forEach(btn => {
+        let lastTouchEnd = 0;
+        btn.addEventListener('touchend', function(event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        });
+    });
+}
+
+// Mobile performance optimizations
+if (window.innerWidth <= 768) {
+    // Reduce animation intensity on mobile
+    document.documentElement.style.setProperty('--transition', 'all 0.2s ease');
+
+    // Optimize scroll performance
+    let ticking = false;
+    const updateScrollEffects = () => {
+        // Update progress bar and header effects
+        ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateScrollEffects);
+            ticking = true;
+        }
+    }, { passive: true });
 }
 
 // Parallax drift on hero orbs

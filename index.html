@@ -4,383 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moodmatch: Comunidad Musical</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #6A0DAD;
-            --secondary: #FF6B6B;
-            --accent: #4ECDC4;
-            --dark: #1A1A2E;
-            --light: #F8F9FA;
-            --transition: all 0.3s ease;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: var(--dark);
-            color: var(--light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header & Navigation */
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            padding: 20px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo i {
-            margin-right: 10px;
-            color: var(--accent);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 30px;
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-        
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-        
-        .btn {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--dark);
-            padding: 12px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--accent);
-            color: var(--accent);
-        }
-        
-        .btn-outline:hover {
-            background: var(--accent);
-            color: var(--dark);
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 150px 0 100px;
-            text-align: center;
-            background: linear-gradient(rgba(26, 26, 46, 0.9), rgba(26, 26, 46, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231A1A2E"/><path d="M0 50 L100 50" stroke="%236A0DAD" stroke-width="0.5" stroke-opacity="0.2"/><path d="M50 0 L50 100" stroke="%236A0DAD" stroke-width="0.5" stroke-opacity="0.2"/></svg>');
-            background-size: cover;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            color: #ccc;
-        }
-        
-        /* Section Styles */
-        section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: white;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(to right, var(--secondary), var(--accent));
-            border-radius: 2px;
-        }
-        
-        /* Features */
-        .features {
-            background-color: rgba(106, 13, 173, 0.05);
-        }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(106, 13, 173, 0.2);
-        }
-        
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--accent);
-        }
-        
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: white;
-        }
-        
-        /* App Comparison */
-        .comparison {
-            text-align: center;
-        }
-        
-        .app-comparison {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .app-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 20px;
-            width: 200px;
-            transition: var(--transition);
-        }
-        
-        .app-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(106, 13, 173, 0.3);
-        }
-        
-        .app-card h4 {
-            margin: 15px 0;
-            color: white;
-        }
-        
-        /* Artist Profile */
-        .artist-profile {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 40px;
-            margin-top: 40px;
-        }
-        
-        .profile-content {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .profile-demo {
-            flex: 1;
-            min-width: 300px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .release-card {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: left;
-        }
-        
-        /* Events Section */
-        .events {
-            background-color: rgba(78, 205, 196, 0.05);
-        }
-        
-        .event-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 25px;
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        
-        .event-date {
-            background: var(--primary);
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            min-width: 80px;
-        }
-        
-        /* Security Section */
-        .security {
-            text-align: center;
-        }
-        
-        .security-icon {
-            font-size: 4rem;
-            color: var(--accent);
-            margin-bottom: 20px;
-        }
-        
-        /* Community Section */
-        .community {
-            text-align: center;
-        }
-        
-        .testimonial {
-            max-width: 700px;
-            margin: 40px auto;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            position: relative;
-        }
-        
-        .testimonial::before {
-            content: '"';
-            font-size: 4rem;
-            color: var(--accent);
-            position: absolute;
-            top: -20px;
-            left: 20px;
-            opacity: 0.3;
-        }
-        
-        /* CTA Section */
-        .cta {
-            text-align: center;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            padding: 100px 0;
-        }
-        
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .copyright {
-            margin-top: 20px;
-            color: #888;
-            font-size: 0.9rem;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .artist-profile {
-                flex-direction: column;
-            }
-        }
-        
-        /* Animation */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .floating {
-            animation: float 5s ease-in-out infinite;
-        }
-    </style>
+    <meta name="description" content="Moodmatch conecta artistas y fans mediante música, personalidad e IA. Crea comunidad auténtica, comparte lanzamientos y organiza eventos en vivo.">
+    <meta name="theme-color" content="#1A1A2E">
+    <meta name="color-scheme" content="dark light">
+    <meta property="og:title" content="Moodmatch: Comunidad Musical">
+    <meta property="og:description" content="Conecta con fans reales a través de tu música y personalidad.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_MX">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+    <div id="progressBar" class="progress-bar" aria-hidden="true"></div>
     <!-- Header & Navigation -->
     <header>
         <div class="container">
@@ -389,7 +27,10 @@
                     <i class="fas fa-music"></i>
                     Moodmatch
                 </div>
-                <ul class="nav-links">
+                <button class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Abrir menú">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul id="primary-navigation" class="nav-links">
                     <li><a href="#features">Características</a></li>
                     <li><a href="#artists">Para Artistas</a></li>
                     <li><a href="#events">Eventos</a></li>
@@ -400,9 +41,16 @@
             </nav>
         </div>
     </header>
+    <div class="nav-overlay" aria-hidden="true"></div>
 
+    <main id="main">
     <!-- Hero Section -->
     <section class="hero">
+        <div class="hero-decor" aria-hidden="true">
+            <span class="orb orb--1"></span>
+            <span class="orb orb--2"></span>
+            <span class="orb orb--3"></span>
+        </div>
         <div class="container">
             <h1>Moodmatch: Comunidad Musical</h1>
             <p>Conecta tu música y tu personalidad para crear lazos auténticos con fans de verdad. Nuestra IA une personalidad, música y hasta tu sonrisa para encontrar el mejor match.</p>
@@ -413,13 +61,13 @@
     <!-- Features Section -->
     <section id="features" class="features">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-reveal>
                 <h2>Conexiones auténticas</h2>
                 <p>Moodmatch es más que una app de citas; es un puente entre almas que vibran con la misma melodía.</p>
             </div>
             
             <div class="feature-grid">
-                <div class="feature-card floating">
+                <div class="feature-card floating" data-reveal>
                     <div class="feature-icon">
                         <i class="fas fa-heart"></i>
                     </div>
@@ -427,15 +75,15 @@
                     <p>Encuentra personas que compartan tu gusto musical y personalidad.</p>
                 </div>
                 
-                <div class="feature-card floating" style="animation-delay: 0.5s;">
+                <div class="feature-card floating" style="animation-delay: 0.5s;" data-reveal>
                     <div class="feature-icon">
-                        <i class="fas fa-swiping-hand"></i>
+                        <i class="fas fa-hand-pointer"></i>
                     </div>
                     <h3>Swipe Intuitivo</h3>
                     <p>Desliza para conectar con fans y artistas que resonan contigo.</p>
                 </div>
                 
-                <div class="feature-card floating" style="animation-delay: 1s;">
+                <div class="feature-card floating" style="animation-delay: 1s;" data-reveal>
                     <div class="feature-icon">
                         <i class="fas fa-comments"></i>
                     </div>
@@ -447,19 +95,19 @@
             <div class="comparison">
                 <h3 style="margin: 40px 0 20px; color: #ccc;">Comparación con otras apps</h3>
                 <div class="app-comparison">
-                    <div class="app-card">
+                    <div class="app-card" data-reveal>
                         <i class="fas fa-smile-beam" style="font-size: 2.5rem; color: var(--accent);"></i>
                         <h4>Mood Match</h4>
                         <p>Conexión musical auténtica</p>
                     </div>
                     
-                    <div class="app-card">
+                    <div class="app-card" data-reveal>
                         <i class="fas fa-search" style="font-size: 2.5rem; color: #888;"></i>
                         <h4>Buscor</h4>
                         <p>Búsqueda básica</p>
                     </div>
                     
-                    <div class="app-card">
+                    <div class="app-card" data-reveal>
                         <i class="fas fa-user" style="font-size: 2.5rem; color: #888;"></i>
                         <h4>Hey Jane</h4>
                         <p>Enfoque general</p>
@@ -472,25 +120,25 @@
     <!-- Artist Profile Section -->
     <section id="artists" class="artists">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-reveal>
                 <h2>Tu voz sin intermediarios</h2>
                 <p>Crea un perfil artístico o de banda para compartir tus lanzamientos y conectar directamente con tus fans.</p>
             </div>
             
             <div class="artist-profile">
-                <div class="profile-content">
+                <div class="profile-content" data-reveal>
                     <h3>Gestiona tu música directamente</h3>
                     <p>Comparte tus lanzamientos, playlists y sesiones en vivo. Envía avisos a tus seguidores y gestiona tu agenda sin intermediarios.</p>
                     <p>Tu manager puede organizar tu calendario, pero la voz con tus fans siempre será la tuya.</p>
                     
-                    <div class="release-card">
+                    <div class="release-card" data-reveal>
                         <h4>NUEVO SINGLE</h4>
                         <h3>SOTOMAYOR</h3>
                         <p>Disponible desde Oct 26, 2025</p>
                     </div>
                 </div>
                 
-                <div class="profile-demo">
+                <div class="profile-demo" data-reveal>
                     <h3>Tu perfil de artista</h3>
                     <div style="margin: 20px 0; padding: 15px; background: rgba(255,255,255,0.1); border-radius: 10px;">
                         <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
@@ -511,12 +159,12 @@
     <!-- Events Section -->
     <section id="events" class="events">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-reveal>
                 <h2>Eventos en vivo y Playzone</h2>
                 <p>Presenta tus Live Parties y comparte música directamente con tus fans.</p>
             </div>
             
-            <div class="event-card">
+            <div class="event-card" data-reveal>
                 <div class="event-date">
                     <h3>25</h3>
                     <p>OCT</p>
@@ -527,7 +175,7 @@
                 </div>
             </div>
             
-            <div class="event-card">
+            <div class="event-card" data-reveal>
                 <div class="event-date">
                     <h3>26</h3>
                     <p>NOV</p>
@@ -543,11 +191,11 @@
     <!-- Security Section -->
     <section id="security" class="security">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-reveal>
                 <h2>Seguridad y transparencia</h2>
             </div>
             
-            <div class="security-icon">
+            <div class="security-icon" data-reveal>
                 <i class="fas fa-shield-alt"></i>
             </div>
             
@@ -560,12 +208,12 @@
     <!-- Community Section -->
     <section id="community" class="community">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-reveal>
                 <h2>Crea y cuida tu comunidad</h2>
                 <p>Conoce a tus seguidores, comparte contenido exclusivo y construye relaciones que perduren.</p>
             </div>
             
-            <div class="testimonial">
+            <div class="testimonial" data-reveal>
                 <p>"Moodmatch transformó cómo me conecto con mis fans. Ahora puedo compartir mi música directamente y crear una comunidad real alrededor de mi arte."</p>
                 <p style="margin-top: 15px; font-weight: 600;">- Regina, artista independiente</p>
             </div>
@@ -573,7 +221,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section id="cta" class="cta">
+    <section id="cta" class="cta" data-reveal>
         <div class="container">
             <h2>Únete al movimiento Moodmatch</h2>
             <p style="max-width: 700px; margin: 0 auto 30px; font-size: 1.1rem;">
@@ -582,6 +230,8 @@
             <a href="#" class="btn" style="background: var(--dark);">Regístrate ahora</a>
         </div>
     </section>
+
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -599,59 +249,10 @@
         </div>
     </footer>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Header background change on scroll
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.background = 'linear-gradient(to right, var(--primary), var(--secondary))';
-                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.3)';
-            } else {
-                header.style.background = 'linear-gradient(to right, var(--primary), var(--secondary))';
-                header.style.boxShadow = 'none';
-            }
-        });
-        
-        // Simple animation for feature cards on scroll
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.style.opacity = 0;
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(card);
-        });
-    </script>
+    <button id="backToTop" class="back-to-top" aria-label="Volver arriba" title="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="app.js" defer></script>
 </body>
 </html>

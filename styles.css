@@ -14,6 +14,48 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Ensure Font Awesome icons are visible */
+.fas, .fab, .far, .fa {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif !important;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: inline-block !important;
+    text-rendering: auto;
+    visibility: visible;
+    position: relative;
+    z-index: 1;
+}
+
+/* Force all icons to be visible */
+i[class*="fa-"] {
+    display: inline-block !important;
+    visibility: visible !important;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-music::before { content: "\f001"; }
+.fa-heart::before { content: "\f004"; }
+.fa-hand-pointer::before { content: "\f25a"; }
+.fa-comments::before { content: "\f086"; }
+.fa-smile-beam::before { content: "\f5b8"; }
+.fa-search::before { content: "\f002"; }
+.fa-user::before { content: "\f007"; }
+.fa-spotify::before { content: "\f1bc"; }
+.fa-bandcamp::before { content: "\f2d5"; }
+.fa-bars::before { content: "\f0c9"; }
+.fa-times::before { content: "\f00d"; }
+.fa-arrow-up::before { content: "\f062"; }
+.fa-whatsapp::before { content: "\f232"; }
+.fa-robot::before { content: "\f544"; }
+.fa-brain::before { content: "\f5dc"; }
+.fa-paper-plane::before { content: "\f1d8"; }
+.fa-shield-alt::before { content: "\f3ed"; }
+
 body {
     background-color: var(--dark);
     color: var(--light);
@@ -103,11 +145,39 @@ nav {
     color: white;
     display: flex;
     align-items: center;
+    text-decoration: none;
 }
 
 .logo i {
     margin-right: 10px;
     color: var(--accent);
+    font-size: 1.5rem;
+    display: inline-block;
+    width: 1.5rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.logo i::before {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif !important;
+    content: "\f001"; /* Music icon fallback */
+}
+
+/* Logo fallback text */
+.logo::before {
+    content: "♪ ";
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    position: relative;
+    z-index: 2;
 }
 
 .nav-toggle {
@@ -437,6 +507,36 @@ section::before {
     font-size: 3rem;
     margin-bottom: 20px;
     color: var(--accent);
+    display: inline-block;
+    width: 4rem;
+    height: 4rem;
+    text-align: center;
+    line-height: 4rem;
+    position: relative;
+}
+
+.feature-icon i {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-size: 3rem;
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif !important;
+}
+
+.feature-icon i::before {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif !important;
+}
+
+.feature-icon::before {
+    content: "★";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    color: var(--accent);
+    opacity: 0.3;
+    z-index: -1;
 }
 
 .feature-card h3 {
@@ -580,6 +680,35 @@ section::before {
     font-size: 4rem;
     color: var(--accent);
     margin-bottom: 20px;
+    display: inline-block;
+    width: 5rem;
+    height: 5rem;
+    text-align: center;
+    line-height: 5rem;
+    position: relative;
+}
+
+.security-icon i {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-size: 4rem;
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif !important;
+}
+
+.security-icon i::before {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif !important;
+}
+
+.security-icon::before {
+    content: "🛡️";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    opacity: 0.3;
+    z-index: -1;
 }
 
 /* Community Section */
@@ -2027,10 +2156,49 @@ footer {
         font-weight: 700;
     }
 
-    .quick-question {
+    .chatbot-option {
         border-width: 2px;
         font-weight: 600;
     }
+}
+
+/* Icon fallbacks for when Font Awesome fails to load */
+.whatsapp-widget i::before { content: "\f232"; }
+.chatbot-toggle i::before { content: "\f086"; }
+.back-to-top i::before { content: "\f062"; }
+
+/* Fallback emojis for icons */
+.whatsapp-widget i::after {
+    content: "💬";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.8rem;
+    opacity: 0;
+    z-index: -1;
+}
+
+.chatbot-toggle i::after {
+    content: "🤖";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.8rem;
+    opacity: 0;
+    z-index: -1;
+}
+
+.back-to-top i::after {
+    content: "⬆️";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.8rem;
+    opacity: 0;
+    z-index: -1;
 }
 
 

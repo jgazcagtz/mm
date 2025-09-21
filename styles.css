@@ -67,6 +67,12 @@ body {
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Ensure text is always visible */
+    font-weight: 400;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+    visibility: visible;
+    display: block;
 }
 
 /* Mobile-first fluid typography */
@@ -211,10 +217,16 @@ nav {
 }
 
 .nav-links a {
-    color: white;
+    color: white !important;
     text-decoration: none;
     font-weight: 500;
     transition: var(--transition);
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    font-size: 1rem;
+    line-height: 1.4;
+    padding: 8px 0;
 }
 
 .nav-links a:hover {
@@ -222,9 +234,9 @@ nav {
 }
 
 .btn {
-    display: inline-block;
+    display: inline-block !important;
     background: var(--accent);
-    color: var(--dark);
+    color: var(--dark) !important;
     padding: 12px 25px;
     border-radius: 30px;
     text-decoration: none;
@@ -236,6 +248,10 @@ nav {
     overflow: hidden;
     min-height: 44px;
     min-width: 44px;
+    visibility: visible;
+    font-size: 1rem;
+    line-height: 1.4;
+    text-align: center;
 }
 
 .btn::before {
@@ -365,6 +381,10 @@ nav {
     -webkit-text-fill-color: transparent;
     line-height: 1.1;
     letter-spacing: -0.02em;
+    display: block !important;
+    visibility: visible !important;
+    /* Fallback for browsers that don't support background-clip */
+    color: var(--light);
 }
 
 .hero p {
@@ -373,6 +393,9 @@ nav {
     margin: 0 auto 32px;
     color: #ccc;
     line-height: 1.6;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1;
 }
 
 /* Section Styles */
@@ -407,12 +430,18 @@ section::before {
     position: relative;
 }
 
+.section-title {
+    display: block !important;
+    visibility: visible !important;
+}
+
 .section-title h2 {
     font-size: clamp(2rem, 6vw, 2.5rem);
     margin-bottom: 15px;
     color: white;
     position: relative;
     display: inline-block;
+    visibility: visible !important;
 }
 
 .section-title h2::before {
@@ -427,6 +456,8 @@ section::before {
     border-radius: 2px;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: center;
+    display: block;
+    visibility: visible;
 }
 
 .section-title h2.revealed::before {
@@ -444,6 +475,8 @@ section::before {
     background: linear-gradient(to right, var(--secondary), var(--accent));
     border-radius: 2px;
     opacity: 0.3;
+    display: block;
+    visibility: visible;
 }
 
 /* Features */
@@ -772,6 +805,9 @@ footer::before {
 
 .logo {
     transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    visibility: visible;
 }
 
 .logo:hover {
@@ -780,9 +816,11 @@ footer::before {
 
 .copyright {
     margin-top: 20px;
-    color: #888;
+    color: #888 !important;
     font-size: 0.9rem;
     opacity: 0.8;
+    display: block;
+    visibility: visible;
 }
 
 .copyright:hover {
@@ -1221,15 +1259,21 @@ footer::before {
 
 .chatbot-info h3 {
     margin: 0;
-    color: white;
+    color: white !important;
     font-size: 1.125rem;
     font-weight: 600;
+    display: block;
+    visibility: visible;
+    opacity: 1;
 }
 
 .chatbot-info p {
     margin: 4px 0 0;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.7) !important;
     font-size: 0.875rem;
+    display: block;
+    visibility: visible;
+    opacity: 1;
 }
 
 .chatbot-close {
@@ -1301,12 +1345,17 @@ footer::before {
     background: rgba(255, 255, 255, 0.05);
     padding: 12px 16px;
     border-radius: 18px;
-    color: white;
+    color: white !important;
     line-height: 1.5;
     max-width: 80%;
     border: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
     animation: messageSlideIn 0.3s ease-out;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1;
+    font-weight: 400;
+    word-wrap: break-word;
 }
 
 @keyframes messageSlideIn {
@@ -1484,15 +1533,19 @@ footer::before {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     padding: 10px 12px;
-    color: white;
+    color: white !important;
     font-size: 0.8rem;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-align: center;
     min-height: 40px;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
+    visibility: visible;
+    opacity: 1;
+    font-weight: 400;
+    line-height: 1.4;
 }
 
 .chatbot-option:hover {
@@ -1835,15 +1888,84 @@ header,
 footer {
     position: relative;
     z-index: 1;
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* Force visibility for all elements */
+* {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+}
+
+/* Override specific elements that need different display */
+span, a, i, button {
+    display: inline !important;
+}
+
+li {
+    display: list-item !important;
+}
+
+img {
+    display: inline-block !important;
+}
+
+/* Ensure text is always readable */
+h1, h2, h3, h4, h5, h6, p, span, a, div, button, li {
+    color: var(--light) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* Ensure all text elements are visible */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--light);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0;
+    display: block;
+    visibility: visible;
+}
+
+p {
+    color: var(--light);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    display: block;
+    visibility: visible;
+    opacity: 1;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    display: inline;
+    visibility: visible;
+}
+
+span, div {
+    visibility: visible;
+    display: block;
 }
 
 /* Main content wrapper */
 .main-content {
     position: relative;
     z-index: 1;
-    display: block;
-    visibility: visible;
+    display: block !important;
+    visibility: visible !important;
     min-height: 100vh;
+    width: 100%;
+    overflow: visible;
+    /* Ensure text content is visible */
+    color: var(--light);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Professional scrollbar styling */

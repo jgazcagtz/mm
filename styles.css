@@ -1165,9 +1165,74 @@ footer::before {
     }
 }
 
+/* Thinking indicator */
+.thinking-indicator {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 80%;
+    min-width: 200px;
+}
+
+.thinking-step {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
+    padding: 4px 0;
+    position: relative;
+}
+
+.thinking-step::before {
+    content: '🤔';
+    margin-right: 8px;
+    font-size: 0.75rem;
+}
+
+.thinking-indicator .thinking-step:nth-child(2)::before {
+    content: '💭';
+}
+
+.thinking-indicator .thinking-step:nth-child(3)::before {
+    content: '✨';
+}
+
 .user-message .message-content {
     background: linear-gradient(135deg, var(--secondary), var(--accent));
     color: var(--dark);
+}
+
+.welcome-message .message-content {
+    background: linear-gradient(135deg, rgba(78, 205, 196, 0.15), rgba(255, 107, 107, 0.15));
+    border: 2px solid rgba(78, 205, 196, 0.3);
+    font-size: 0.9rem;
+    padding: 20px;
+    line-height: 1.6;
+    animation: welcomeSlideIn 0.8s ease-out;
+}
+
+@keyframes welcomeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.welcome-message .message-avatar {
+    background: linear-gradient(135deg, var(--accent), var(--secondary));
+    animation: avatarPulse 2s ease-in-out infinite;
+}
+
+@keyframes avatarPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
 }
 
 .chatbot-input-container {
@@ -1178,97 +1243,108 @@ footer::before {
     gap: 16px;
 }
 
-.chatbot-quick-questions {
+.chatbot-options {
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    max-height: 120px;
+    flex-direction: column;
+    gap: 16px;
+    max-height: 400px;
     overflow-y: auto;
     padding: 8px;
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.chatbot-quick-questions::-webkit-scrollbar {
+.chatbot-options::-webkit-scrollbar {
     width: 4px;
 }
 
-.chatbot-quick-questions::-webkit-scrollbar-track {
+.chatbot-options::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 2px;
 }
 
-.chatbot-quick-questions::-webkit-scrollbar-thumb {
+.chatbot-options::-webkit-scrollbar-thumb {
     background: rgba(78, 205, 196, 0.3);
     border-radius: 2px;
 }
 
-.chatbot-quick-questions::-webkit-scrollbar-thumb:hover {
+.chatbot-options::-webkit-scrollbar-thumb:hover {
     background: rgba(78, 205, 196, 0.5);
 }
 
-.quick-question {
+.chatbot-category {
+    margin-bottom: 8px;
+}
+
+.chatbot-category h4 {
+    color: var(--accent);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.option-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 8px;
+}
+
+.chatbot-option {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    padding: 8px 16px;
+    border-radius: 16px;
+    padding: 10px 12px;
     color: white;
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.quick-question:hover {
-    background: rgba(78, 205, 196, 0.2);
-    border-color: var(--accent);
-    transform: translateY(-2px);
-}
-
-.chatbot-input-wrapper {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-}
-
-.chatbot-input {
-    flex: 1;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 25px;
-    padding: 12px 20px;
-    color: white;
-    font-size: 0.875rem;
-    outline: none;
-}
-
-.chatbot-input:focus {
-    border-color: var(--accent);
-    background: rgba(255, 255, 255, 0.08);
-}
-
-.chatbot-input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.chatbot-send {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--secondary), var(--accent));
-    border: none;
-    color: white;
-    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+    min-height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
 }
 
-.chatbot-send:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+.chatbot-option:hover {
+    background: rgba(78, 205, 196, 0.15);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(78, 205, 196, 0.2);
 }
+
+.chatbot-option:active {
+    transform: translateY(0);
+    background: rgba(78, 205, 196, 0.25);
+}
+
+@media (max-width: 768px) {
+    .option-buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .chatbot-option {
+        font-size: 0.875rem;
+        padding: 12px 16px;
+        min-height: 44px;
+    }
+}
+
+@media (max-width: 480px) {
+    .chatbot-options {
+        max-height: 300px;
+    }
+
+    .chatbot-category h4 {
+        font-size: 0.8rem;
+    }
+
+    .chatbot-option {
+        font-size: 0.85rem;
+        padding: 10px 12px;
+    }
+}
+
+/* Removed old input wrapper styles - now using options-based interface */
 
 @keyframes chatbotSlideIn {
     to {
@@ -1340,7 +1416,10 @@ footer::before {
 
 @media (max-width: 480px) {
     .whatsapp-widget {
-        display: none;
+        bottom: 70px;
+        left: 12px;
+        right: auto;
+        display: flex !important;
     }
 
     /* Ultra-small screen optimizations */
@@ -1594,8 +1673,117 @@ body {
     .event-card,
     .app-card,
     .btn,
-    .nav-links a {
+    .nav-links a,
+    .chatbot-option {
         will-change: transform;
+    }
+}
+
+/* Enhanced mobile interactions */
+@media (max-width: 768px) {
+    .chatbot-container {
+        border-radius: 16px 16px 0 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 80vh;
+        max-height: 600px;
+    }
+
+    .chatbot-toggle {
+        bottom: 20px;
+        right: 20px;
+        z-index: 1002;
+    }
+
+    .whatsapp-widget {
+        bottom: 90px;
+        left: 20px;
+    }
+
+    .back-to-top {
+        bottom: 90px;
+        right: 20px;
+    }
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 768px) {
+    .chatbot-option {
+        min-height: 48px;
+        padding: 14px 16px;
+        font-size: 0.9rem;
+    }
+
+    .chatbot-category h4 {
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+    }
+
+    .option-buttons {
+        gap: 12px;
+    }
+
+    /* Better mobile scrolling */
+    .chatbot-options {
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+}
+
+/* Ultra-mobile optimizations */
+@media (max-width: 480px) {
+    .chatbot-container {
+        height: 85vh;
+        max-height: 500px;
+    }
+
+    .chatbot-messages {
+        padding: 16px 12px;
+    }
+
+    .chatbot-input-container {
+        padding: 16px 12px;
+    }
+
+    .chatbot-option {
+        min-height: 44px;
+        padding: 12px 14px;
+        font-size: 0.875rem;
+        border-radius: 14px;
+    }
+
+    .chatbot-category h4 {
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+    }
+
+    /* Stack options vertically on very small screens */
+    .option-buttons {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 768px) {
+    .thinking-indicator,
+    .typing-indicator {
+        animation-duration: 1s;
+    }
+
+    .chatbot-option {
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Reduce motion complexity on mobile */
+    .orb {
+        animation: none !important;
+    }
+
+    .floating {
+        animation-duration: 8s;
     }
 }
 

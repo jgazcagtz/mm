@@ -232,13 +232,14 @@ if (whatsappWidget) {
 const chatbotToggle = document.getElementById('openChatbot');
 const chatbotContainer = document.getElementById('chatbot');
 const closeChatbot = document.getElementById('closeChatbot');
-const chatbotInput = document.getElementById('chatbotInput');
-const sendMessage = document.getElementById('sendMessage');
+// const chatbotInput = document.getElementById('chatbotInput'); // Removed - now options-based
+// const sendMessage = document.getElementById('sendMessage'); // Removed - now options-based
 const chatbotMessages = document.getElementById('chatbotMessages');
-const quickQuestions = document.querySelectorAll('.quick-question');
+const chatbotOptions = document.querySelectorAll('.chatbot-option');
 
 // Chatbot responses
 const chatbotResponses = {
+    '¿Cuáles son los precios?': 'Tenemos diferentes planes diseñados para cubrir todas las necesidades:\n\n🎵 **BÁSICO (Gratis)**:\n• Perfil ilimitado\n• Matches básicos\n• Eventos públicos\n• Chat con matches\n\n💎 **PREMIUM ($9.99/mes)**:\n• Todo lo del Básico\n• Matches ilimitados\n• Eventos VIP exclusivos\n• Filtros avanzados\n• Chat prioritario\n• Estadísticas detalladas\n\n🎤 **PRO ARTIST ($19.99/mes)**:\n• Todo lo del Premium\n• Herramientas de promoción\n• Eventos ilimitados\n• Análisis de audiencia\n• Soporte prioritario\n• Distribución de música\n\n🎪 **ENTERPRISE (Personalizado)**:\n• Para sellos discográficos\n• Grandes artistas\n• Soluciones personalizadas\n\n¿Te gustaría saber más sobre algún plan específico?',
     // Basic functionality
     '¿Cómo funciona Moodmatch?': 'Moodmatch es una plataforma revolucionaria que conecta a artistas y fans a través de la música y la personalidad. Usamos inteligencia artificial avanzada para analizar tus gustos musicales, personalidad y hasta tu estado de ánimo para encontrar matches perfectos. ¡Es como tener un mejor amigo que sabe exactamente qué música te va a encantar!',
 
@@ -308,6 +309,44 @@ const getBotResponse = (userMessage) => {
     return chatbotResponses.default;
 };
 
+const showThinkingIndicator = () => {
+    const thinkingDiv = document.createElement('div');
+    thinkingDiv.className = 'chatbot-message bot-message';
+    thinkingDiv.id = 'thinking-indicator';
+
+    const avatarDiv = document.createElement('div');
+    avatarDiv.className = 'message-avatar';
+    avatarDiv.innerHTML = '<i class="fas fa-brain"></i>';
+
+    const thinkingIndicatorDiv = document.createElement('div');
+    thinkingIndicatorDiv.className = 'thinking-indicator';
+
+    const thinkingSteps = ['Analizando tu consulta...', 'Procesando información...', 'Generando respuesta...'];
+    thinkingSteps.forEach((step, index) => {
+        const stepDiv = document.createElement('div');
+        stepDiv.className = 'thinking-step';
+        stepDiv.style.opacity = '0';
+        stepDiv.style.transform = 'translateY(10px)';
+        stepDiv.textContent = step;
+
+        // Animate each step
+        setTimeout(() => {
+            stepDiv.style.transition = 'all 0.5s ease';
+            stepDiv.style.opacity = '1';
+            stepDiv.style.transform = 'translateY(0)';
+        }, index * 800);
+
+        thinkingIndicatorDiv.appendChild(stepDiv);
+    });
+
+    thinkingDiv.appendChild(avatarDiv);
+    thinkingDiv.appendChild(thinkingIndicatorDiv);
+    chatbotMessages.appendChild(thinkingDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+    return thinkingDiv;
+};
+
 const showTypingIndicator = () => {
     const typingDiv = document.createElement('div');
     typingDiv.className = 'chatbot-message bot-message';
@@ -339,18 +378,32 @@ const hideTypingIndicator = (typingDiv) => {
     }
 };
 
+const hideThinkingIndicator = (thinkingDiv) => {
+    if (thinkingDiv && thinkingDiv.parentNode) {
+        thinkingDiv.parentNode.removeChild(thinkingDiv);
+    }
+};
+
 const sendUserMessage = (message) => {
     addMessage(message, true);
-    const typingDiv = showTypingIndicator();
 
-    // Simulate realistic typing time based on response length
+    // Show thinking process first
+    const thinkingDiv = showThinkingIndicator();
+
+    // Simulate thinking time
     const response = getBotResponse(message);
-    const typingTime = Math.min(500 + (response.length * 30), 2500);
+    const thinkingTime = 2000; // 2 seconds of thinking
+    const typingTime = Math.min(500 + (response.length * 25), 2000);
 
     setTimeout(() => {
-        hideTypingIndicator(typingDiv);
-        addMessage(response, false);
-    }, typingTime);
+        hideThinkingIndicator(thinkingDiv);
+        const typingDiv = showTypingIndicator();
+
+        setTimeout(() => {
+            hideTypingIndicator(typingDiv);
+            addMessage(response, false);
+        }, typingTime);
+    }, thinkingTime);
 };
 
 if (chatbotToggle && chatbotContainer) {
@@ -370,37 +423,22 @@ if (chatbotToggle && chatbotContainer) {
         closeChatbot.addEventListener('click', closeChat);
     }
 
-    // Quick questions
-    quickQuestions.forEach(button => {
+    // Chatbot options
+    chatbotOptions.forEach(button => {
         button.addEventListener('click', () => {
             const question = button.getAttribute('data-question');
             sendUserMessage(question);
+
+            // Add visual feedback
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                button.style.transform = '';
+            }, 150);
         });
     });
 
-    // Send message on button click
-    if (sendMessage) {
-        sendMessage.addEventListener('click', () => {
-            const message = chatbotInput.value.trim();
-            if (message) {
-                sendUserMessage(message);
-                chatbotInput.value = '';
-            }
-        });
-    }
-
-    // Send message on Enter key
-    if (chatbotInput) {
-        chatbotInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                const message = chatbotInput.value.trim();
-                if (message) {
-                    sendUserMessage(message);
-                    chatbotInput.value = '';
-                }
-            }
-        });
-    }
+    // Remove old text input functionality
+    // The chatbot now uses only the options-based interface
 
 // Close on escape key
 document.addEventListener('keydown', (e) => {
@@ -409,26 +447,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Professional chatbot enhancements
-const chatbotInput = document.getElementById('chatbotInput');
-const sendMessage = document.getElementById('sendMessage');
-
-// Add input validation and UX improvements
-if (chatbotInput) {
-    chatbotInput.addEventListener('input', (e) => {
-        const value = e.target.value.trim();
-        if (sendMessage) {
-            sendMessage.style.opacity = value ? '1' : '0.5';
-            sendMessage.disabled = !value;
-        }
-    });
-
-    // Auto-resize textarea functionality (if converted to textarea)
-    chatbotInput.addEventListener('input', (e) => {
-        e.target.style.height = 'auto';
-        e.target.style.height = Math.min(e.target.scrollHeight, 100) + 'px';
-    });
-}
+// Professional chatbot enhancements - now options-based interface
 
 // Add message timestamps (optional professional feature)
 const addMessageWithTimestamp = (content, isUser = false) => {
@@ -457,55 +476,8 @@ const addMessageWithTimestamp = (content, isUser = false) => {
     return messageDiv;
 };
 
-// Enhanced message sending with better UX
-const sendUserMessageEnhanced = (message) => {
-    // Clear input immediately for better UX
-    const originalPlaceholder = chatbotInput.placeholder;
-    chatbotInput.placeholder = 'Enviando...';
-    chatbotInput.disabled = true;
-    if (sendMessage) sendMessage.disabled = true;
-
-    addMessageWithTimestamp(message, true);
-
-    const typingDiv = showTypingIndicator();
-    const response = getBotResponse(message);
-    const typingTime = Math.min(800 + (response.length * 25), 3000);
-
-    setTimeout(() => {
-        hideTypingIndicator(typingDiv);
-        addMessageWithTimestamp(response, false);
-
-        // Re-enable input
-        chatbotInput.placeholder = originalPlaceholder;
-        chatbotInput.disabled = false;
-        chatbotInput.focus();
-        if (sendMessage) sendMessage.disabled = false;
-    }, typingTime);
-};
-
-// Update the event listeners to use enhanced function
-if (sendMessage) {
-    sendMessage.addEventListener('click', () => {
-        const message = chatbotInput.value.trim();
-        if (message) {
-            sendUserMessageEnhanced(message);
-            chatbotInput.value = '';
-        }
-    });
+// Chatbot now uses options-based interface only
 }
 
-if (chatbotInput) {
-    chatbotInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            const message = chatbotInput.value.trim();
-            if (message) {
-                sendUserMessageEnhanced(message);
-                chatbotInput.value = '';
-            }
-        }
-    });
-}
-}
 
 

@@ -276,33 +276,59 @@
             </button>
         </div>
         <div id="chatbotMessages" class="chatbot-messages">
-            <div class="chatbot-message bot-message">
+            <div class="chatbot-message bot-message welcome-message">
                 <div class="message-avatar">
                     <i class="fas fa-robot"></i>
                 </div>
                 <div class="message-content">
-                    ¡Hola! Soy el asistente de Moodmatch. ¿En qué puedo ayudarte hoy?
+                    ¡Hola! 👋 Soy el asistente inteligente de Moodmatch.<br><br>
+                    Estoy aquí para ayudarte con cualquier pregunta sobre nuestra plataforma musical. Puedo explicarte:<br><br>
+                    🎵 <strong>Cómo funciona</strong> Moodmatch<br>
+                    👥 <strong>Crear tu perfil</strong> y encontrar matches<br>
+                    🎤 <strong>Herramientas para artistas</strong><br>
+                    💰 <strong>Planes y precios</strong><br>
+                    🎉 <strong>Eventos y actividades</strong><br><br>
+                    ¡Selecciona una categoría arriba para comenzar! 🚀
                 </div>
             </div>
         </div>
-        <div class="chatbot-input-container">
-            <div class="chatbot-quick-questions">
-                <button class="quick-question" data-question="¿Cómo funciona Moodmatch?">¿Cómo funciona?</button>
-                <button class="quick-question" data-question="¿Es gratis registrarse?">¿Es gratis?</button>
-                <button class="quick-question" data-question="¿Cómo contacto a un artista?">Contacto artistas</button>
-                <button class="quick-question" data-question="¿Qué eventos hay disponibles?">Eventos</button>
-                <button class="quick-question" data-question="¿Cómo puedo crear mi perfil?">Crear perfil</button>
-                <button class="quick-question" data-question="¿Qué necesito para registrarme?">Requisitos</button>
-                <button class="quick-question" data-question="¿Puedo subir mi música?">Subir música</button>
-                <button class="quick-question" data-question="¿Cómo funciona el matching?">Sistema matching</button>
-                <button class="quick-question" data-question="¿Es seguro usar Moodmatch?">Seguridad</button>
-                <button class="quick-question" data-question="¿Hay versión premium?">Premium</button>
-            </div>
-            <div class="chatbot-input-wrapper">
-                <input type="text" id="chatbotInput" class="chatbot-input" placeholder="Escribe tu pregunta...">
-                <button id="sendMessage" class="chatbot-send" aria-label="Enviar mensaje">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
+            <div class="chatbot-input-container">
+            <div class="chatbot-options">
+                <div class="chatbot-category">
+                    <h4>Información General</h4>
+                    <div class="option-buttons">
+                        <button class="chatbot-option" data-question="¿Cómo funciona Moodmatch?">¿Cómo funciona?</button>
+                        <button class="chatbot-option" data-question="¿Es gratis registrarse?">¿Es gratis?</button>
+                        <button class="chatbot-option" data-question="¿Qué necesito para registrarme?">Requisitos</button>
+                    </div>
+                </div>
+
+                <div class="chatbot-category">
+                    <h4>Para Artistas</h4>
+                    <div class="option-buttons">
+                        <button class="chatbot-option" data-question="¿Cómo puedo crear mi perfil?">Crear perfil</button>
+                        <button class="chatbot-option" data-question="¿Puedo subir mi música?">Subir música</button>
+                        <button class="chatbot-option" data-question="¿Cómo contacto a un artista?">Contacto artistas</button>
+                    </div>
+                </div>
+
+                <div class="chatbot-category">
+                    <h4>Características</h4>
+                    <div class="option-buttons">
+                        <button class="chatbot-option" data-question="¿Cómo funciona el matching?">Sistema matching</button>
+                        <button class="chatbot-option" data-question="¿Qué eventos hay disponibles?">Eventos</button>
+                        <button class="chatbot-option" data-question="¿Es seguro usar Moodmatch?">Seguridad</button>
+                    </div>
+                </div>
+
+                <div class="chatbot-category">
+                    <h4>Planes y Precios</h4>
+                    <div class="option-buttons">
+                        <button class="chatbot-option" data-question="¿Hay versión premium?">Premium</button>
+                        <button class="chatbot-option" data-question="¿Cuáles son los precios?">Precios</button>
+                        <button class="chatbot-option" data-question="¿Cómo puedo registrarme?">Registrarme</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

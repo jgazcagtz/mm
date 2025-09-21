@@ -189,6 +189,11 @@ nav {
     text-align: center;
 }
 
+/* Ensure text is always visible - if button has dark background, text should be light */
+.btn[style*="background: var(--dark)"] {
+    color: var(--light) !important;
+}
+
 .btn::before {
     content: '';
     position: absolute;

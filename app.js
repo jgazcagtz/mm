@@ -433,37 +433,6 @@ const sendUserMessage = (message) => {
 };
 
 if (chatbotToggle && chatbotContainer) {
-    // Auto-open chatbot after page load
-    const autoOpenChatbot = () => {
-        setTimeout(() => {
-            // Show chatbot
-            chatbotContainer.style.display = 'grid';
-            chatbotContainer.classList.add('show');
-            chatbotToggle.style.display = 'none';
-
-            // Handle mobile responsiveness
-            if (window.innerWidth <= 768) {
-                chatbotContainer.style.position = 'fixed';
-                chatbotContainer.style.bottom = '0';
-                chatbotContainer.style.left = '0';
-                chatbotContainer.style.right = '0';
-                chatbotContainer.style.width = '100%';
-                chatbotContainer.style.height = '85vh';
-                chatbotContainer.style.maxHeight = '700px';
-                chatbotContainer.style.borderRadius = '20px 20px 0 0';
-                chatbotContainer.style.zIndex = '1001';
-            }
-
-            // Add welcome message after opening (without triggering notifications)
-            setTimeout(() => {
-                const welcomeResponse = getBotResponse('hola');
-                addMessage(welcomeResponse, false);
-            }, 1000);
-        }, 3000); // Open after 3 seconds
-    };
-
-    // Start auto-open timer
-    autoOpenChatbot();
 
     // Options toggle functionality
     if (toggleOptionsBtn && chatbotInputContainer) {

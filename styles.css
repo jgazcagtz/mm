@@ -14,105 +14,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Font Awesome icons - Latest version */
-.fas, .fab, .far, .fa {
-    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: auto;
-}
-
-i[class*="fa-"] {
-    display: inline-block;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif;
-    font-weight: 400;
-    line-height: 1;
-    vertical-align: middle;
-}
-
-/* No emoji fallbacks - clean icon display */
-
-/* Core Icons */
-.fa-music::before { content: "\f001"; }
-.fa-heart::before { content: "\f004"; }
-.fa-hand-pointer::before { content: "\f25a"; }
-.fa-comments::before { content: "\f086"; }
-.fa-search::before { content: "\f002"; }
-.fa-user::before { content: "\f007"; }
-.fa-bars::before { content: "\f0c9"; }
-.fa-times::before { content: "\f00d"; }
-.fa-arrow-up::before { content: "\f062"; }
-
-/* Music Platform Icons */
-.fa-spotify::before { content: "\f1bc"; }
-.fa-bandcamp::before { content: "\f2d5"; }
-.fa-soundcloud::before { content: "\f1be"; }
-.fa-youtube::before { content: "\f167"; }
-.fa-apple::before { content: "\f179"; }
-.fa-play::before { content: "\f04b"; }
-.fa-pause::before { content: "\f04c"; }
-.fa-forward::before { content: "\f04e"; }
-.fa-backward::before { content: "\f04a"; }
-.fa-volume-up::before { content: "\f028"; }
-.fa-volume-down::before { content: "\f027"; }
-.fa-volume-mute::before { content: "\f6a9"; }
-.fa-record-vinyl::before { content: "\f8d9"; }
-.fa-microphone::before { content: "\f130"; }
-.fa-microphone-alt::before { content: "\f3c9"; }
-.fa-guitar::before { content: "\f7a6"; }
-.fa-drum::before { content: "\f569"; }
-.fa-headphones::before { content: "\f025"; }
-.fa-radio::before { content: "\f8d7"; }
-.fa-music-note::before { content: "\f8d8"; }
-.fa-waveform::before { content: "\f8f1"; }
-
-/* UI & Interaction Icons */
-.fa-whatsapp::before { content: "\f232"; }
-.fa-robot::before { content: "\f544"; }
-.fa-brain::before { content: "\f5dc"; }
-.fa-paper-plane::before { content: "\f1d8"; }
-.fa-shield-alt::before { content: "\f3ed"; }
-.fa-star::before { content: "\f005"; }
-.fa-thumbs-up::before { content: "\f164"; }
-.fa-thumbs-down::before { content: "\f165"; }
-.fa-share::before { content: "\f064"; }
-.fa-download::before { content: "\f019"; }
-.fa-upload::before { content: "\f093"; }
-.fa-eye::before { content: "\f06e"; }
-.fa-heart-broken::before { content: "\f7a9"; }
-.fa-smile::before { content: "\f118"; }
-.fa-grin::before { content: "\f580"; }
-.fa-laugh::before { content: "\f599"; }
-
-/* Modern Cool Icons */
-.fa-fire::before { content: "\f06d"; }
-.fa-flame::before { content: "\f6df"; }
-.fa-bolt::before { content: "\f0e7"; }
-.fa-sparkles::before { content: "\f890"; }
-.fa-magic::before { content: "\f0d0"; }
-.fa-wand-magic::before { content: "\f72b"; }
-.fa-palette::before { content: "\f53f"; }
-.fa-paint-brush::before { content: "\f1fc"; }
-.fa-music-rainbow::before { content: "\e9e1"; }
-.fa-vr-cardboard::before { content: "\f729"; }
-.fa-headphones-alt::before { content: "\f58f"; }
-.fa-compact-disc::before { content: "\f51f"; }
-.fa-drum-steelpan::before { content: "\f56a"; }
-.fa-sliders-h::before { content: "\f1de"; }
-.fa-random::before { content: "\f074"; }
-.fa-redo::before { content: "\f01e"; }
-.fa-undo::before { content: "\f0e2"; }
-.fa-repeat::before { content: "\f363"; }
-.fa-infinity::before { content: "\f534"; }
-.fa-crown::before { content: "\f521"; }
-.fa-diamond::before { content: "\f219"; }
-.fa-gem::before { content: "\f3a5"; }
+/* Font Awesome icons loaded from CDN */
 
 body {
     background-color: var(--dark);
@@ -213,23 +115,6 @@ nav {
     margin-right: 10px;
     color: var(--accent);
     font-size: 1.5rem;
-    display: inline-block;
-    width: 1.5rem;
-    text-align: center;
-    vertical-align: middle;
-}
-
-.logo i::before {
-    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif;
-    content: "\f001"; /* Music icon fallback */
-}
-
-/* Logo fallback text */
-.logo::before {
-    content: "♪ ";
-    color: var(--accent);
-    font-size: 1.5rem;
-    margin-right: 10px;
 }
 
 .logo-text {
@@ -590,23 +475,6 @@ section::before {
     width: 100%;
     text-align: center;
     font-size: 3rem;
-    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif;
-}
-
-.feature-icon i::before {
-    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif;
-}
-
-.feature-icon::before {
-    content: "★";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2rem;
-    color: var(--accent);
-    opacity: 0.3;
-    z-index: -1;
 }
 
 .feature-card h3 {
@@ -763,22 +631,6 @@ section::before {
     width: 100%;
     text-align: center;
     font-size: 4rem;
-    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif;
-}
-
-.security-icon i::before {
-    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif;
-}
-
-.security-icon::before {
-    content: "🛡️";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2.5rem;
-    opacity: 0.3;
-    z-index: -1;
 }
 
 /* Community Section */
@@ -795,15 +647,6 @@ section::before {
     position: relative;
 }
 
-.testimonial::before {
-    content: '"';
-    font-size: 4rem;
-    color: var(--accent);
-    position: absolute;
-    top: -20px;
-    left: 20px;
-    opacity: 0.3;
-}
 
 /* CTA Section */
 .cta {
@@ -1247,27 +1090,6 @@ footer::before {
     transform: rotate(180deg);
 }
 
-/* Ensure Font Awesome icons display properly */
-.fas, .fab, .far, .fa {
-    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif !important;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    display: inline-block;
-    text-rendering: auto;
-    line-height: 1;
-}
-
-/* Fix icon loading issues */
-i[class*="fa-"] {
-    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif !important;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    display: inline-block;
-    text-rendering: auto;
-    line-height: 1;
-}
 
 .chatbot-toggle:hover {
     transform: translateY(-4px) scale(1.05);
@@ -2394,118 +2216,5 @@ a {
     }
 }
 
-/* Icon fallbacks for when Font Awesome fails to load */
-.whatsapp-widget i::before { content: "\f232"; }
-.chatbot-toggle i::before { content: "\f086"; }
-.back-to-top i::before { content: "\f062"; }
-
-/* Clean icon display - no emoji fallbacks */
-
-/* Clean icon display - no fallbacks */
-
-/* Ensure all Font Awesome icons are visible */
-.fas::before, .fab::before, .far::before, .fa::before {
-    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/* Critical icon fallbacks - text-based */
-.chatbot-close::before {
-    content: "✕";
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    font-size: 1rem;
-}
-
-.nav-toggle::before {
-    content: "☰";
-    font-family: Arial, sans-serif;
-    font-size: 1.2rem;
-}
-
-.back-to-top::before {
-    content: "↑";
-    font-family: Arial, sans-serif;
-    font-size: 1rem;
-}
-
-/* Show text fallbacks if Font Awesome fails */
-i[class*="fa-"]:empty::before {
-    font-family: Arial, sans-serif !important;
-    font-weight: bold !important;
-}
-
-/* Specific critical icons */
-.fa-times::before {
-    content: "✕";
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    font-size: 1rem;
-}
-
-.fa-bars::before {
-    content: "☰";
-    font-family: Arial, sans-serif;
-    font-size: 1.2rem;
-}
-
-.fa-arrow-up::before {
-    content: "↑";
-    font-family: Arial, sans-serif;
-    font-size: 1rem;
-}
-
-.fa-comments::before {
-    content: "💬";
-    font-family: Arial, sans-serif;
-    font-size: 1.2rem;
-}
-
-.fa-music::before {
-    content: "♪";
-    font-family: Arial, sans-serif;
-    font-size: 1.2rem;
-}
-
-.fab.fa-whatsapp::before {
-    content: "📱";
-    font-family: Arial, sans-serif;
-    font-size: 1.2rem;
-}
-
-.fa-robot::before {
-    content: "🤖";
-    font-family: Arial, sans-serif;
-    font-size: 1.2rem;
-}
-
-.fa-chevron-down::before {
-    content: "▼";
-    font-family: Arial, sans-serif;
-    font-size: 0.8rem;
-}
-
-/* Fallback mode when Font Awesome fails */
-body.fa-fallback .fa-times::before,
-body.fa-fallback .fa-bars::before,
-body.fa-fallback .fa-arrow-up::before,
-body.fa-fallback .fa-comments::before,
-body.fa-fallback .fa-music::before,
-body.fa-fallback .fab.fa-whatsapp::before,
-body.fa-fallback .fa-robot::before,
-body.fa-fallback .fa-chevron-down::before {
-    font-family: Arial, sans-serif !important;
-}
-
-body.fa-fallback .fa-times::before { content: "✕" !important; }
-body.fa-fallback .fa-bars::before { content: "☰" !important; }
-body.fa-fallback .fa-arrow-up::before { content: "↑" !important; }
-body.fa-fallback .fa-comments::before { content: "💬" !important; }
-body.fa-fallback .fa-music::before { content: "♪" !important; }
-body.fa-fallback .fab.fa-whatsapp::before { content: "📱" !important; }
-body.fa-fallback .fa-robot::before { content: "🤖" !important; }
-body.fa-fallback .fa-chevron-down::before { content: "▼" !important; }
 
 

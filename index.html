@@ -253,6 +253,58 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- WhatsApp Widget -->
+    <div id="whatsappWidget" class="whatsapp-widget" aria-label="Contactar por WhatsApp">
+        <div class="whatsapp-widget-content">
+            <i class="fab fa-whatsapp"></i>
+            <span>Contáctanos</span>
+        </div>
+    </div>
+
+    <!-- Chatbot -->
+    <div id="chatbot" class="chatbot-container">
+        <div class="chatbot-header">
+            <div class="chatbot-avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="chatbot-info">
+                <h3>Asistente Moodmatch</h3>
+                <p>¡Hola! ¿En qué puedo ayudarte?</p>
+            </div>
+            <button id="closeChatbot" class="chatbot-close" aria-label="Cerrar chat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div id="chatbotMessages" class="chatbot-messages">
+            <div class="chatbot-message bot-message">
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    ¡Hola! Soy el asistente de Moodmatch. ¿En qué puedo ayudarte hoy?
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-input-container">
+            <div class="chatbot-quick-questions">
+                <button class="quick-question" data-question="¿Cómo funciona Moodmatch?">¿Cómo funciona?</button>
+                <button class="quick-question" data-question="¿Es gratis registrarse?">¿Es gratis?</button>
+                <button class="quick-question" data-question="¿Cómo contacto a un artista?">Contacto artistas</button>
+                <button class="quick-question" data-question="¿Qué eventos hay disponibles?">Eventos</button>
+            </div>
+            <div class="chatbot-input-wrapper">
+                <input type="text" id="chatbotInput" class="chatbot-input" placeholder="Escribe tu pregunta...">
+                <button id="sendMessage" class="chatbot-send" aria-label="Enviar mensaje">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <button id="openChatbot" class="chatbot-toggle" aria-label="Abrir chat de asistencia">
+        <i class="fas fa-comments"></i>
+    </button>
+
     <script src="app.js" defer></script>
 </body>
 </html>

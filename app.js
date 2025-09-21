@@ -57,24 +57,48 @@ if (!prefersReducedMotion && 'IntersectionObserver' in window) {
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('#primary-navigation');
 const navOverlay = document.querySelector('.nav-overlay');
+
+const closeMenu = () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Abrir menú');
+    navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+    if (navOverlay) navOverlay.classList.remove('show');
+};
+
+const openMenu = () => {
+    navLinks.classList.add('open');
+    navToggle.setAttribute('aria-expanded', 'true');
+    navToggle.setAttribute('aria-label', 'Cerrar menú');
+    navToggle.innerHTML = '<i class="fas fa-times"></i>';
+    if (navOverlay) navOverlay.classList.add('show');
+};
+
 if (navToggle && navLinks) {
     navToggle.addEventListener('click', () => {
-        const isOpen = navLinks.classList.toggle('open');
-        navToggle.setAttribute('aria-expanded', String(isOpen));
-        navToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
-        if (navOverlay) navOverlay.classList.toggle('show', isOpen);
+        const isOpen = navLinks.classList.contains('open');
+        if (isOpen) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
     });
 
     // Close menu on link click (mobile)
     navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (navLinks.classList.contains('open')) {
-                navLinks.classList.remove('open');
-                navToggle.setAttribute('aria-expanded', 'false');
-                navToggle.setAttribute('aria-label', 'Abrir menú');
-                if (navOverlay) navOverlay.classList.remove('show');
-            }
-        });
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Close menu when clicking overlay
+    if (navOverlay) {
+        navOverlay.addEventListener('click', closeMenu);
+    }
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+            closeMenu();
+        }
     });
 }
 
@@ -113,6 +137,8 @@ if (progressBar) {
 
 // Global reveal animations
 const revealItems = document.querySelectorAll('[data-reveal]');
+const sectionTitles = document.querySelectorAll('.section-title h2');
+
 if (revealItems.length && !prefersReducedMotion && 'IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
@@ -126,6 +152,7 @@ if (revealItems.length && !prefersReducedMotion && 'IntersectionObserver' in win
         rootMargin: window.innerWidth <= 768 ? '50px' : '0px'
     });
     revealItems.forEach(el => revealObserver.observe(el));
+    sectionTitles.forEach(el => revealObserver.observe(el));
 }
 
 // Mobile touch improvements
@@ -186,6 +213,135 @@ if (hero && !prefersReducedMotion) {
             const depth = (i + 1) * 2;
             orb.style.transform = `translate(${x / depth}px, ${y / depth}px)`;
         });
+    });
+}
+
+// WhatsApp Widget
+const whatsappWidget = document.getElementById('whatsappWidget');
+if (whatsappWidget) {
+    whatsappWidget.addEventListener('click', () => {
+        // Replace with actual WhatsApp number
+        const phoneNumber = '52551234567'; // Example number
+        const message = 'Hola, me gustaría obtener más información sobre Moodmatch.';
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+    });
+}
+
+// Chatbot functionality
+const chatbotToggle = document.getElementById('openChatbot');
+const chatbotContainer = document.getElementById('chatbot');
+const closeChatbot = document.getElementById('closeChatbot');
+const chatbotInput = document.getElementById('chatbotInput');
+const sendMessage = document.getElementById('sendMessage');
+const chatbotMessages = document.getElementById('chatbotMessages');
+const quickQuestions = document.querySelectorAll('.quick-question');
+
+// Chatbot responses
+const chatbotResponses = {
+    '¿Cómo funciona Moodmatch?': 'Moodmatch es una plataforma que conecta a artistas y fans a través de la música y la personalidad. Usamos IA para encontrar matches perfectos basados en gustos musicales y traits de personalidad.',
+    '¿Es gratis registrarse?': '¡Sí! El registro es completamente gratuito. Puedes crear tu perfil, explorar matches y conectar con otros usuarios sin costo inicial.',
+    '¿Cómo contacto a un artista?': 'Una vez que hagas match con un artista, podrás enviarle mensajes directos y compartir música. También puedes asistir a sus eventos exclusivos.',
+    '¿Qué eventos hay disponibles?': 'Tenemos Live Parties, lanzamientos exclusivos, meet & greets virtuales y eventos presenciales. Los artistas pueden programar sus propios eventos directamente en la plataforma.',
+    'hola': '¡Hola! ¿En qué puedo ayudarte con Moodmatch?',
+    'gracias': '¡De nada! ¿Tienes alguna otra pregunta?',
+    'ayuda': 'Estoy aquí para ayudarte. Puedo responder preguntas sobre cómo funciona Moodmatch, registro, eventos y más.',
+    'precio': 'El registro básico es gratuito. Tenemos planes premium con features adicionales para artistas.',
+    'artistas': 'En Moodmatch puedes conectar directamente con artistas independientes y establecidos. ¡Es una gran forma de descubrir nueva música!',
+    'música': 'La música es el corazón de Moodmatch. Puedes compartir playlists, asistir a eventos y conectar con personas que aman la misma música que tú.',
+    'default': 'Lo siento, no entendí tu pregunta. ¿Puedes reformularla? Puedo ayudarte con información sobre Moodmatch, registro, eventos y más.'
+};
+
+const addMessage = (content, isUser = false) => {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `chatbot-message ${isUser ? 'user-message' : 'bot-message'}`;
+
+    const avatarDiv = document.createElement('div');
+    avatarDiv.className = 'message-avatar';
+    avatarDiv.innerHTML = `<i class="fas fa-${isUser ? 'user' : 'robot'}"></i>`;
+
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'message-content';
+    contentDiv.textContent = content;
+
+    messageDiv.appendChild(avatarDiv);
+    messageDiv.appendChild(contentDiv);
+    chatbotMessages.appendChild(messageDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+};
+
+const getBotResponse = (userMessage) => {
+    const lowerMessage = userMessage.toLowerCase();
+    for (const [question, response] of Object.entries(chatbotResponses)) {
+        if (lowerMessage.includes(question.toLowerCase()) || question.toLowerCase().includes(lowerMessage)) {
+            return response;
+        }
+    }
+    return chatbotResponses.default;
+};
+
+const sendUserMessage = (message) => {
+    addMessage(message, true);
+    setTimeout(() => {
+        const response = getBotResponse(message);
+        addMessage(response, false);
+    }, 1000);
+};
+
+if (chatbotToggle && chatbotContainer) {
+    // Open chatbot
+    chatbotToggle.addEventListener('click', () => {
+        chatbotContainer.classList.add('show');
+        chatbotToggle.style.display = 'none';
+    });
+
+    // Close chatbot
+    const closeChat = () => {
+        chatbotContainer.classList.remove('show');
+        chatbotToggle.style.display = 'flex';
+    };
+
+    if (closeChatbot) {
+        closeChatbot.addEventListener('click', closeChat);
+    }
+
+    // Quick questions
+    quickQuestions.forEach(button => {
+        button.addEventListener('click', () => {
+            const question = button.getAttribute('data-question');
+            sendUserMessage(question);
+        });
+    });
+
+    // Send message on button click
+    if (sendMessage) {
+        sendMessage.addEventListener('click', () => {
+            const message = chatbotInput.value.trim();
+            if (message) {
+                sendUserMessage(message);
+                chatbotInput.value = '';
+            }
+        });
+    }
+
+    // Send message on Enter key
+    if (chatbotInput) {
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const message = chatbotInput.value.trim();
+                if (message) {
+                    sendUserMessage(message);
+                    chatbotInput.value = '';
+                }
+            }
+        });
+    }
+
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && chatbotContainer.classList.contains('show')) {
+            closeChat();
+        }
     });
 }
 

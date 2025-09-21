@@ -236,6 +236,7 @@ const closeChatbot = document.getElementById('closeChatbot');
 // const sendMessage = document.getElementById('sendMessage'); // Removed - now options-based
 const chatbotMessages = document.getElementById('chatbotMessages');
 const chatbotOptions = document.querySelectorAll('.chatbot-option');
+console.log('Found chatbot options:', chatbotOptions.length); // Debug log
 
 // Chatbot responses
 const chatbotResponses = {
@@ -407,6 +408,7 @@ const sendUserMessage = (message) => {
 };
 
 if (chatbotToggle && chatbotContainer) {
+    console.log('Chatbot elements found:', { chatbotToggle, chatbotContainer }); // Debug log
     // Open chatbot
     chatbotToggle.addEventListener('click', (e) => {
         e.preventDefault();
@@ -415,6 +417,7 @@ if (chatbotToggle && chatbotContainer) {
         // Show chatbot
         chatbotContainer.style.display = 'flex';
         chatbotContainer.classList.add('show');
+        chatbotContainer.style.pointerEvents = 'auto';
         chatbotToggle.style.display = 'none';
 
         // Handle mobile responsiveness
@@ -440,6 +443,7 @@ if (chatbotToggle && chatbotContainer) {
     // Close chatbot
     const closeChat = () => {
         chatbotContainer.classList.remove('show');
+        chatbotContainer.style.pointerEvents = 'none';
         chatbotToggle.style.display = 'flex';
 
         // Reset mobile styles

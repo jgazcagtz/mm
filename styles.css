@@ -912,6 +912,7 @@ footer::before {
     transition: opacity .3s ease, transform .3s ease;
     transform: translateY(10px);
     z-index: 999;
+    visibility: visible;
 }
 
 .back-to-top.show {
@@ -933,9 +934,13 @@ footer::before {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
     overflow: hidden;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: whatsappSlideIn 0.6s ease-out 2s forwards;
+    opacity: 1; /* Show immediately */
+    transform: translateY(0);
+    animation: whatsappSlideIn 0.6s ease-out 0.5s forwards;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    visibility: visible;
 }
 
 .whatsapp-widget:hover {
@@ -986,14 +991,15 @@ footer::before {
     box-shadow: 0 8px 32px rgba(255, 107, 107, 0.3);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: chatbotSlideIn 0.6s ease-out 3s forwards;
-    display: flex;
+    opacity: 1; /* Show immediately */
+    transform: translateY(0);
+    animation: chatbotSlideIn 0.6s ease-out 1s forwards;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
+    visibility: visible;
 }
 
 .chatbot-toggle:hover {
@@ -1021,6 +1027,7 @@ footer::before {
     pointer-events: none;
     overflow: hidden;
     box-sizing: border-box;
+    visibility: visible;
 }
 
 /* Ensure proper flex layout */
@@ -1040,6 +1047,13 @@ footer::before {
 
 .chatbot-input-container {
     flex-shrink: 0;
+}
+
+.chatbot-container.show {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+    pointer-events: auto !important;
+    display: flex !important;
 }
 
 .chatbot-header {
@@ -1731,6 +1745,9 @@ body {
 
     .chatbot-container.show {
         display: flex !important;
+        opacity: 1 !important;
+        transform: translateY(0) scale(1) !important;
+        pointer-events: auto !important;
     }
 
     .chatbot-header {

@@ -408,7 +408,6 @@ const sendUserMessage = (message) => {
 };
 
 if (chatbotToggle && chatbotContainer) {
-    console.log('Chatbot elements found:', { chatbotToggle, chatbotContainer }); // Debug log
     // Open chatbot
     chatbotToggle.addEventListener('click', (e) => {
         e.preventDefault();
@@ -417,7 +416,6 @@ if (chatbotToggle && chatbotContainer) {
         // Show chatbot
         chatbotContainer.style.display = 'flex';
         chatbotContainer.classList.add('show');
-        chatbotContainer.style.pointerEvents = 'auto';
         chatbotToggle.style.display = 'none';
 
         // Handle mobile responsiveness
@@ -433,17 +431,11 @@ if (chatbotToggle && chatbotContainer) {
             chatbotContainer.style.borderRadius = '20px 20px 0 0';
             chatbotContainer.style.zIndex = '1001';
         }
-
-        // Focus management
-        setTimeout(() => {
-            chatbotContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 100);
     });
 
     // Close chatbot
     const closeChat = () => {
         chatbotContainer.classList.remove('show');
-        chatbotContainer.style.pointerEvents = 'none';
         chatbotToggle.style.display = 'flex';
 
         // Reset mobile styles

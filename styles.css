@@ -19,15 +19,12 @@ body {
     color: var(--light);
     line-height: 1.6;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
     /* iOS Safari specific improvements */
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Safe area support */
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
 }
 
 /* Mobile-first fluid typography */
@@ -41,6 +38,10 @@ html { font-size: 14px; }
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
+    z-index: 1;
+    display: block;
+    visibility: visible;
 }
 
 .skip-link {
@@ -72,6 +73,8 @@ header {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    display: block;
+    visibility: visible;
 }
 
 nav {
@@ -214,6 +217,10 @@ nav {
     text-align: center;
     background: linear-gradient(rgba(26, 26, 46, 0.9), rgba(26, 26, 46, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231A1A2E"/><path d="M0 50 L100 50" stroke="%236A0DAD" stroke-width="0.5" stroke-opacity="0.2"/><path d="M50 0 L50 100" stroke="%236A0DAD" stroke-width="0.5" stroke-opacity="0.2"/></svg>');
     background-size: cover;
+    position: relative;
+    z-index: 1;
+    display: block;
+    visibility: visible;
 }
 
 .hero-decor { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
@@ -302,6 +309,9 @@ nav {
 section {
     padding: 80px 0;
     position: relative;
+    z-index: 1;
+    display: block;
+    visibility: visible;
 }
 
 /* Add subtle pattern overlay to sections */
@@ -615,6 +625,9 @@ footer {
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
+    z-index: 1;
+    display: block;
+    visibility: visible;
 }
 
 footer::before {
@@ -1027,7 +1040,6 @@ footer::before {
     pointer-events: none;
     overflow: hidden;
     box-sizing: border-box;
-    visibility: visible;
 }
 
 /* Ensure proper flex layout */
@@ -1684,6 +1696,25 @@ body {
 /* Smooth state transitions for theme consistency */
 * {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ensure main page elements are always visible */
+.main-content,
+.container,
+section,
+header,
+footer {
+    position: relative;
+    z-index: 1;
+}
+
+/* Main content wrapper */
+.main-content {
+    position: relative;
+    z-index: 1;
+    display: block;
+    visibility: visible;
+    min-height: 100vh;
 }
 
 /* Professional scrollbar styling */

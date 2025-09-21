@@ -236,7 +236,26 @@ const chatbotMessages = document.getElementById('chatbotMessages');
 const chatbotOptions = document.querySelectorAll('.chatbot-option');
 const toggleOptionsBtn = document.getElementById('toggleOptions');
 const chatbotInputContainer = document.querySelector('.chatbot-input-container');
+const chatbotNotification = document.getElementById('chatbotNotification');
 console.log('Found chatbot options:', chatbotOptions.length); // Debug log
+
+// Notification system
+let notificationCount = 0;
+
+const showNotification = (count = 1) => {
+    if (chatbotNotification) {
+        notificationCount = Math.min(count, 99);
+        chatbotNotification.textContent = notificationCount > 9 ? '9+' : notificationCount;
+        chatbotNotification.classList.add('show');
+    }
+};
+
+const hideNotification = () => {
+    if (chatbotNotification) {
+        chatbotNotification.classList.remove('show');
+        notificationCount = 0;
+    }
+};
 
 // Chatbot responses
 const chatbotResponses = {
@@ -403,11 +422,49 @@ const sendUserMessage = (message) => {
         setTimeout(() => {
             hideTypingIndicator(typingDiv);
             addMessage(response, false);
+
+            // Show notification for new message if chatbot is closed
+            if (!chatbotContainer.classList.contains('show')) {
+                notificationCount++;
+                showNotification(notificationCount);
+            }
         }, typingTime);
     }, thinkingTime);
 };
 
 if (chatbotToggle && chatbotContainer) {
+    // Auto-open chatbot after page load
+    const autoOpenChatbot = () => {
+        setTimeout(() => {
+            // Show chatbot
+            chatbotContainer.style.display = 'grid';
+            chatbotContainer.classList.add('show');
+            chatbotToggle.style.display = 'none';
+
+            // Handle mobile responsiveness
+            if (window.innerWidth <= 768) {
+                chatbotContainer.style.position = 'fixed';
+                chatbotContainer.style.bottom = '0';
+                chatbotContainer.style.left = '0';
+                chatbotContainer.style.right = '0';
+                chatbotContainer.style.width = '100%';
+                chatbotContainer.style.height = '85vh';
+                chatbotContainer.style.maxHeight = '700px';
+                chatbotContainer.style.borderRadius = '20px 20px 0 0';
+                chatbotContainer.style.zIndex = '1001';
+            }
+
+            // Add welcome message after opening (without triggering notifications)
+            setTimeout(() => {
+                const welcomeResponse = getBotResponse('hola');
+                addMessage(welcomeResponse, false);
+            }, 1000);
+        }, 3000); // Open after 3 seconds
+    };
+
+    // Start auto-open timer
+    autoOpenChatbot();
+
     // Options toggle functionality
     if (toggleOptionsBtn && chatbotInputContainer) {
         let optionsCollapsed = false;
@@ -459,6 +516,9 @@ if (chatbotToggle && chatbotContainer) {
             chatbotContainer.style.borderRadius = '20px 20px 0 0';
             chatbotContainer.style.zIndex = '1001';
         }
+
+        // Hide notification when opening chatbot
+        hideNotification();
     });
 
     // Close chatbot

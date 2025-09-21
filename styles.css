@@ -1053,6 +1053,51 @@ footer::before {
     justify-content: center;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
+    animation: chatbotButtonPulse 2s ease-in-out infinite;
+}
+
+/* Chatbot notification badge */
+.chatbot-notification {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4757;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+    border: 2px solid var(--dark);
+    min-width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1001;
+}
+
+.chatbot-notification.show {
+    transform: scale(1);
+    opacity: 1;
+    animation: notificationBounce 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes notificationBounce {
+    0% {
+        transform: scale(0) translateY(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) translateY(-2px);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
 }
 
 /* Options Toggle Button */
@@ -1384,6 +1429,17 @@ footer::before {
     50% { transform: scale(1.1); }
 }
 
+@keyframes chatbotButtonPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 8px 32px rgba(255, 107, 107, 0.3);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 12px 40px rgba(255, 107, 107, 0.5);
+    }
+}
+
 .chatbot-input-container {
     padding: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -1534,6 +1590,13 @@ footer::before {
         height: 56px;
         bottom: 86px;
         right: 16px;
+    }
+
+    .chatbot-notification {
+        font-size: 0.7rem;
+        padding: 1px 5px;
+        min-width: 16px;
+        height: 16px;
     }
 
     .chatbot-container {
@@ -2111,6 +2174,15 @@ a {
     .chatbot-toggle {
         bottom: 16px;
         right: 16px;
+    }
+
+    .chatbot-notification {
+        font-size: 0.65rem;
+        padding: 1px 4px;
+        min-width: 14px;
+        height: 14px;
+        top: -3px;
+        right: -3px;
     }
 
     .back-to-top {

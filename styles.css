@@ -14,23 +14,17 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Ensure Font Awesome icons are visible */
+/* Font Awesome icons */
 .fas, .fab, .far, .fa {
-    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif !important;
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    display: inline-block !important;
     text-rendering: auto;
-    visibility: visible;
-    position: relative;
-    z-index: 1;
 }
 
-/* Force all icons to be visible */
 i[class*="fa-"] {
-    display: inline-block !important;
-    visibility: visible !important;
+    display: inline-block;
     font-style: normal;
     font-variant: normal;
     text-rendering: auto;
@@ -162,7 +156,7 @@ nav {
 }
 
 .logo i::before {
-    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif !important;
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif;
     content: "\f001"; /* Music icon fallback */
 }
 
@@ -532,11 +526,11 @@ section::before {
     width: 100%;
     text-align: center;
     font-size: 3rem;
-    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif !important;
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif;
 }
 
 .feature-icon i::before {
-    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif !important;
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif;
 }
 
 .feature-icon::before {
@@ -705,11 +699,11 @@ section::before {
     width: 100%;
     text-align: center;
     font-size: 4rem;
-    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif !important;
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif;
 }
 
 .security-icon i::before {
-    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif !important;
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", Arial, sans-serif;
 }
 
 .security-icon::before {
@@ -1167,11 +1161,8 @@ footer::before {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     display: none; /* Hidden by default */
     flex-direction: column;
-    opacity: 0;
-    transform: translateY(20px) scale(0.9);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1001;
-    pointer-events: none;
     overflow: hidden;
     box-sizing: border-box;
 }

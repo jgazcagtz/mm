@@ -408,44 +408,127 @@ const sendUserMessage = (message) => {
 
 if (chatbotToggle && chatbotContainer) {
     // Open chatbot
-    chatbotToggle.addEventListener('click', () => {
+    chatbotToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Show chatbot
+        chatbotContainer.style.display = 'flex';
         chatbotContainer.classList.add('show');
         chatbotToggle.style.display = 'none';
+
+        // Handle mobile responsiveness
+        if (window.innerWidth <= 768) {
+            // Mobile: make it full screen
+            chatbotContainer.style.position = 'fixed';
+            chatbotContainer.style.bottom = '0';
+            chatbotContainer.style.left = '0';
+            chatbotContainer.style.right = '0';
+            chatbotContainer.style.width = '100%';
+            chatbotContainer.style.height = '85vh';
+            chatbotContainer.style.maxHeight = '700px';
+            chatbotContainer.style.borderRadius = '20px 20px 0 0';
+            chatbotContainer.style.zIndex = '1001';
+        }
+
+        // Focus management
+        setTimeout(() => {
+            chatbotContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
     });
 
     // Close chatbot
     const closeChat = () => {
         chatbotContainer.classList.remove('show');
         chatbotToggle.style.display = 'flex';
+
+        // Reset mobile styles
+        setTimeout(() => {
+            if (window.innerWidth <= 768) {
+                chatbotContainer.style.position = '';
+                chatbotContainer.style.bottom = '';
+                chatbotContainer.style.left = '';
+                chatbotContainer.style.right = '';
+                chatbotContainer.style.width = '';
+                chatbotContainer.style.height = '';
+                chatbotContainer.style.maxHeight = '';
+                chatbotContainer.style.borderRadius = '';
+                chatbotContainer.style.zIndex = '';
+            }
+            chatbotContainer.style.display = 'none';
+        }, 300); // Match transition duration
     };
 
     if (closeChatbot) {
-        closeChatbot.addEventListener('click', closeChat);
+        closeChatbot.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeChat();
+        });
     }
 
     // Chatbot options
     chatbotOptions.forEach(button => {
-        button.addEventListener('click', () => {
-            const question = button.getAttribute('data-question');
-            sendUserMessage(question);
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
 
-            // Add visual feedback
-            button.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                button.style.transform = '';
-            }, 150);
+            const question = button.getAttribute('data-question');
+            if (question && chatbotResponses[question]) {
+                sendUserMessage(question);
+
+                // Add visual feedback
+                button.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    button.style.transform = '';
+                }, 150);
+            }
         });
     });
 
-    // Remove old text input functionality
-    // The chatbot now uses only the options-based interface
+    // Close when clicking outside (desktop only)
+    document.addEventListener('click', (e) => {
+        if (chatbotContainer.classList.contains('show') &&
+            !chatbotContainer.contains(e.target) &&
+            !chatbotToggle.contains(e.target) &&
+            window.innerWidth > 768) {
+            closeChat();
+        }
+    });
 
-// Close on escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && chatbotContainer.classList.contains('show')) {
-        closeChat();
-    }
-});
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && chatbotContainer.classList.contains('show')) {
+            closeChat();
+        }
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        if (chatbotContainer.classList.contains('show')) {
+            if (window.innerWidth <= 768) {
+                // Mobile view
+                chatbotContainer.style.position = 'fixed';
+                chatbotContainer.style.bottom = '0';
+                chatbotContainer.style.left = '0';
+                chatbotContainer.style.right = '0';
+                chatbotContainer.style.width = '100%';
+                chatbotContainer.style.height = '85vh';
+                chatbotContainer.style.maxHeight = '700px';
+                chatbotContainer.style.borderRadius = '20px 20px 0 0';
+            } else {
+                // Desktop view
+                chatbotContainer.style.position = 'fixed';
+                chatbotContainer.style.bottom = '100px';
+                chatbotContainer.style.left = 'auto';
+                chatbotContainer.style.right = '20px';
+                chatbotContainer.style.width = 'min(400px, 90vw)';
+                chatbotContainer.style.height = 'min(600px, 80vh)';
+                chatbotContainer.style.borderRadius = '20px';
+            }
+        }
+    });
+}
 
 // Professional chatbot enhancements - now options-based interface
 

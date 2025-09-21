@@ -232,10 +232,10 @@ if (whatsappWidget) {
 const chatbotToggle = document.getElementById('openChatbot');
 const chatbotContainer = document.getElementById('chatbot');
 const closeChatbot = document.getElementById('closeChatbot');
-// const chatbotInput = document.getElementById('chatbotInput'); // Removed - now options-based
-// const sendMessage = document.getElementById('sendMessage'); // Removed - now options-based
 const chatbotMessages = document.getElementById('chatbotMessages');
 const chatbotOptions = document.querySelectorAll('.chatbot-option');
+const toggleOptionsBtn = document.getElementById('toggleOptions');
+const chatbotInputContainer = document.querySelector('.chatbot-input-container');
 console.log('Found chatbot options:', chatbotOptions.length); // Debug log
 
 // Chatbot responses
@@ -408,13 +408,41 @@ const sendUserMessage = (message) => {
 };
 
 if (chatbotToggle && chatbotContainer) {
+    // Options toggle functionality
+    if (toggleOptionsBtn && chatbotInputContainer) {
+        let optionsCollapsed = false;
+
+        toggleOptionsBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            optionsCollapsed = !optionsCollapsed;
+
+            if (optionsCollapsed) {
+                // Collapse options
+                chatbotInputContainer.classList.add('collapsed');
+                toggleOptionsBtn.classList.add('collapsed');
+                chatbotContainer.classList.add('options-collapsed');
+                toggleOptionsBtn.setAttribute('aria-label', 'Mostrar opciones');
+                toggleOptionsBtn.querySelector('span').textContent = 'Opciones Rápidas';
+            } else {
+                // Expand options
+                chatbotInputContainer.classList.remove('collapsed');
+                toggleOptionsBtn.classList.remove('collapsed');
+                chatbotContainer.classList.remove('options-collapsed');
+                toggleOptionsBtn.setAttribute('aria-label', 'Ocultar opciones');
+                toggleOptionsBtn.querySelector('span').textContent = 'Opciones Rápidas';
+            }
+        });
+    }
+
     // Open chatbot
     chatbotToggle.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
 
         // Show chatbot
-        chatbotContainer.style.display = 'flex';
+        chatbotContainer.style.display = 'grid';
         chatbotContainer.classList.add('show');
         chatbotToggle.style.display = 'none';
 
@@ -437,6 +465,15 @@ if (chatbotToggle && chatbotContainer) {
     const closeChat = () => {
         chatbotContainer.classList.remove('show');
         chatbotToggle.style.display = 'flex';
+
+        // Reset options state
+        if (toggleOptionsBtn && chatbotInputContainer) {
+            chatbotInputContainer.classList.remove('collapsed');
+            toggleOptionsBtn.classList.remove('collapsed');
+            chatbotContainer.classList.remove('options-collapsed');
+            toggleOptionsBtn.setAttribute('aria-label', 'Mostrar opciones');
+            toggleOptionsBtn.querySelector('span').textContent = 'Opciones Rápidas';
+        }
 
         // Reset mobile styles
         setTimeout(() => {
@@ -524,6 +561,21 @@ if (chatbotToggle && chatbotContainer) {
             }
         }
     });
+
+    // Initialize options as collapsed on mobile
+    const initializeOptionsState = () => {
+        if (window.innerWidth <= 768 && toggleOptionsBtn && chatbotInputContainer) {
+            // Start collapsed on mobile for better UX
+            chatbotInputContainer.classList.add('collapsed');
+            toggleOptionsBtn.classList.add('collapsed');
+            chatbotContainer.classList.add('options-collapsed');
+            toggleOptionsBtn.setAttribute('aria-label', 'Mostrar opciones');
+            toggleOptionsBtn.querySelector('span').textContent = 'Opciones Rápidas';
+        }
+    };
+
+    // Initialize on load
+    initializeOptionsState();
 }
 
 // Professional chatbot enhancements - now options-based interface

@@ -1143,6 +1143,46 @@ footer::before {
     user-select: none;
 }
 
+/* Options Toggle Button */
+.chatbot-options-toggle {
+    padding: 12px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+    flex-shrink: 0;
+}
+
+.options-toggle-btn {
+    width: 100%;
+    background: rgba(78, 205, 196, 0.1);
+    border: 1px solid rgba(78, 205, 196, 0.3);
+    border-radius: 20px;
+    padding: 10px 16px;
+    color: var(--accent);
+    font-size: 0.875rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    min-height: 36px;
+}
+
+.options-toggle-btn:hover {
+    background: rgba(78, 205, 196, 0.2);
+    border-color: var(--accent);
+}
+
+.options-toggle-btn i {
+    font-size: 0.75rem;
+    transition: transform 0.3s ease;
+}
+
+.options-toggle-btn.collapsed i {
+    transform: rotate(180deg);
+}
+
 .chatbot-toggle:hover {
     transform: translateY(-4px) scale(1.05);
     box-shadow: 0 12px 40px rgba(255, 107, 107, 0.4);
@@ -1168,6 +1208,11 @@ footer::before {
     box-sizing: border-box;
     display: grid;
     grid-template-rows: auto 1fr auto; /* Header, messages, options */
+}
+
+/* Compact mode when options are collapsed */
+.chatbot-container.options-collapsed .chatbot-input-container {
+    display: none;
 }
 
 /* Ensure proper flex layout */
@@ -1434,6 +1479,14 @@ footer::before {
     gap: 16px;
     overflow-y: auto;
     max-height: 300px; /* Fixed height for options area */
+    transition: all 0.3s ease;
+}
+
+/* Collapsed state */
+.chatbot-input-container.collapsed {
+    max-height: 0;
+    padding: 0 20px;
+    overflow: hidden;
 }
 
 .chatbot-options {
@@ -1580,6 +1633,10 @@ footer::before {
         grid-template-rows: auto 1fr auto;
     }
 
+    .chatbot-container.options-collapsed {
+        height: 60vh; /* More compact when options are hidden */
+    }
+
     .chatbot-messages {
         padding: 16px;
     }
@@ -1588,6 +1645,21 @@ footer::before {
         padding: 16px;
         max-height: 250px;
         overflow-y: auto;
+    }
+
+    .chatbot-input-container.collapsed {
+        max-height: 0;
+        padding: 0 16px;
+    }
+
+    .chatbot-options-toggle {
+        padding: 8px 16px;
+    }
+
+    .options-toggle-btn {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+        min-height: 32px;
     }
 
     .message-content {
@@ -1634,6 +1706,10 @@ footer::before {
         grid-template-rows: auto 1fr auto;
     }
 
+    .chatbot-container.options-collapsed {
+        height: 65vh; /* More compact when options are hidden */
+    }
+
     .chatbot-messages {
         padding: 12px;
     }
@@ -1641,6 +1717,21 @@ footer::before {
     .chatbot-input-container {
         padding: 12px;
         max-height: 200px;
+    }
+
+    .chatbot-input-container.collapsed {
+        max-height: 0;
+        padding: 0 12px;
+    }
+
+    .chatbot-options-toggle {
+        padding: 6px 12px;
+    }
+
+    .options-toggle-btn {
+        font-size: 0.75rem;
+        padding: 6px 10px;
+        min-height: 28px;
     }
 
     .message-content {
@@ -1944,10 +2035,16 @@ a {
         padding-top: 0;
         position: fixed !important;
         z-index: 1001;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+    }
+
+    .chatbot-container.options-collapsed {
+        height: 75vh; /* More compact when options are hidden */
     }
 
     .chatbot-container.show {
-        display: flex !important;
+        display: grid !important;
         opacity: 1 !important;
         transform: translateY(0) scale(1) !important;
         pointer-events: auto !important;
@@ -2042,6 +2139,12 @@ a {
         height: 90vh;
         max-height: 600px;
         border-radius: 16px 16px 0 0;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+    }
+
+    .chatbot-container.options-collapsed {
+        height: 80vh; /* More compact when options are hidden */
     }
 
     .chatbot-header {

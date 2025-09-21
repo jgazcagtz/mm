@@ -239,17 +239,45 @@ const quickQuestions = document.querySelectorAll('.quick-question');
 
 // Chatbot responses
 const chatbotResponses = {
-    '¿Cómo funciona Moodmatch?': 'Moodmatch es una plataforma que conecta a artistas y fans a través de la música y la personalidad. Usamos IA para encontrar matches perfectos basados en gustos musicales y traits de personalidad.',
-    '¿Es gratis registrarse?': '¡Sí! El registro es completamente gratuito. Puedes crear tu perfil, explorar matches y conectar con otros usuarios sin costo inicial.',
-    '¿Cómo contacto a un artista?': 'Una vez que hagas match con un artista, podrás enviarle mensajes directos y compartir música. También puedes asistir a sus eventos exclusivos.',
-    '¿Qué eventos hay disponibles?': 'Tenemos Live Parties, lanzamientos exclusivos, meet & greets virtuales y eventos presenciales. Los artistas pueden programar sus propios eventos directamente en la plataforma.',
-    'hola': '¡Hola! ¿En qué puedo ayudarte con Moodmatch?',
-    'gracias': '¡De nada! ¿Tienes alguna otra pregunta?',
-    'ayuda': 'Estoy aquí para ayudarte. Puedo responder preguntas sobre cómo funciona Moodmatch, registro, eventos y más.',
-    'precio': 'El registro básico es gratuito. Tenemos planes premium con features adicionales para artistas.',
-    'artistas': 'En Moodmatch puedes conectar directamente con artistas independientes y establecidos. ¡Es una gran forma de descubrir nueva música!',
-    'música': 'La música es el corazón de Moodmatch. Puedes compartir playlists, asistir a eventos y conectar con personas que aman la misma música que tú.',
-    'default': 'Lo siento, no entendí tu pregunta. ¿Puedes reformularla? Puedo ayudarte con información sobre Moodmatch, registro, eventos y más.'
+    // Basic functionality
+    '¿Cómo funciona Moodmatch?': 'Moodmatch es una plataforma revolucionaria que conecta a artistas y fans a través de la música y la personalidad. Usamos inteligencia artificial avanzada para analizar tus gustos musicales, personalidad y hasta tu estado de ánimo para encontrar matches perfectos. ¡Es como tener un mejor amigo que sabe exactamente qué música te va a encantar!',
+
+    '¿Es gratis registrarse?': '¡Absolutamente sí! El registro en Moodmatch es completamente gratuito. Puedes crear tu perfil, explorar la comunidad, hacer matches iniciales y comenzar a conectar con otros usuarios sin pagar nada. Solo si quieres acceder a features premium como eventos exclusivos o contacto directo con artistas famosos, entonces considerarías nuestros planes pagos.',
+
+    '¿Cómo contacto a un artista?': '¡Es muy fácil! Una vez que hagas match con un artista (basado en compatibilidad musical y de personalidad), podrás:\n\n• Enviarle mensajes directos\n• Compartir playlists y canciones\n• Recibir notificaciones de sus eventos\n• Asistir a sus Live Parties exclusivas\n• Comprar su música directamente desde la plataforma',
+
+    '¿Qué eventos hay disponibles?': '¡Moodmatch está lleno de eventos emocionantes!\n\n• **Live Parties**: Sesiones en vivo donde artistas comparten su proceso creativo\n• **Lanzamientos exclusivos**: Escucha nueva música antes que nadie\n• **Meet & Greets virtuales**: Conoce a tus artistas favoritos\n• **Conciertos presenciales**: Eventos reales organizados por la comunidad\n• **Workshops**: Aprende sobre producción musical, composición, etc.\n\nLos artistas pueden crear sus propios eventos directamente en la plataforma.',
+
+    // New comprehensive questions
+    '¿Cómo puedo crear mi perfil?': 'Crear tu perfil en Moodmatch es súper fácil:\n\n1. **Regístrate** con tu email o redes sociales\n2. **Completa tu perfil musical** - selecciona tus géneros favoritos, artistas preferidos\n3. **Responde el test de personalidad** - esto nos ayuda a encontrar tus matches perfectos\n4. **Sube tu foto** (opcional, pero recomendado para mejor matching)\n5. **Verifica tu identidad** - por seguridad, usamos verificación facial\n\n¡En menos de 5 minutos estás listo para conectar!',
+
+    '¿Qué necesito para registrarme?': 'Solo necesitas:\n\n• **Email válido** o cuenta de redes sociales\n• **Ser mayor de 13 años**\n• **Tener interés real en la música** 🎵\n• **Completar verificación facial** (toma 30 segundos)\n\nNo necesitas:\n• Tarjeta de crédito\n• Experiencia musical previa\n• Equipo especial\n\n¡Cualquiera con pasión por la música es bienvenido!',
+
+    '¿Puedo subir mi música?': '¡Por supuesto! Si eres artista o creador musical:\n\n• **Sube tus tracks originales** directamente\n• **Comparte tus playlists** curadas\n• **Transmite en vivo** tus sesiones\n• **Organiza eventos** para tu comunidad\n• **Conecta con fans** reales interesados en tu música\n• **Vende tu música** con enlaces directos a Spotify, Bandcamp, etc.\n\nPara usuarios regulares:\n• **Comparte playlists** con la comunidad\n• **Recomienda canciones** a tus matches\n• **Asiste a eventos** de artistas emergentes',
+
+    '¿Cómo funciona el matching?': 'Nuestro sistema de matching es único y súper inteligente:\n\n🎯 **Análisis musical**: Analizamos tus gustos, playlists y artistas favoritos\n🧠 **Personalidad IA**: Usamos IA para entender tu personalidad basada en tus interacciones\n😊 **Estado de ánimo**: Hasta consideramos tu estado emocional actual\n🔥 **Compatibilidad**: Encontramos personas con gustos similares y energía complementaria\n\nResultado: **Matches auténticos** que van más allá de la música superficial',
+
+    '¿Es seguro usar Moodmatch?': '¡La seguridad es nuestra prioridad #1!\n\n🔐 **Verificación facial**: Todos los usuarios pasan por verificación facial\n🚫 **Sin datos personales**: Nunca compartimos emails o números de teléfono\n💬 **Chat seguro**: Toda comunicación sucede dentro de la app\n👥 **Comunidad moderada**: Monitoreamos la plataforma 24/7\n🎵 **Enfoque musical**: Nos centramos en conexiones auténticas a través de la música\n\nMiles de usuarios ya confían en nosotros para encontrar conexiones reales.',
+
+    '¿Hay versión premium?': '¡Sí! Tenemos planes premium diseñados para diferentes necesidades:\n\n**Para fans**:\n• Acceso prioritario a eventos exclusivos\n• Más matches diarios\n• Filtros avanzados\n• Chat con artistas famosos\n\n**Para artistas**:\n• Estadísticas detalladas de tu audiencia\n• Herramientas de promoción avanzadas\n• Eventos ilimitados\n• Análisis de engagement\n• Soporte prioritario\n\n**Planes**:\n• **Básico**: Gratis para siempre\n• **Premium**: $9.99/mes\n• **Pro Artist**: $19.99/mes\n• **Enterprise**: Para sellos y grandes artistas',
+
+    // Conversational responses
+    'hola': '¡Hola! Soy el asistente de Moodmatch. ¿En qué puedo ayudarte hoy? 😊',
+    'buenos días': '¡Buenos días! ¿Qué tal tu día? ¿En qué puedo ayudarte con Moodmatch?',
+    'buenas tardes': '¡Buenas tardes! ¿Cómo va tu día? Dime, ¿qué quieres saber sobre Moodmatch?',
+    'buenas noches': '¡Buenas noches! ¿Buscando música para relajarte? Cuéntame qué necesitas.',
+    'gracias': '¡De nada! ¿Tienes alguna otra pregunta sobre Moodmatch?',
+    'ayuda': 'Estoy aquí para ayudarte. Puedo responder preguntas sobre:\n• Cómo funciona la plataforma\n• Registro y perfil\n• Sistema de matching\n• Eventos y actividades\n• Seguridad y privacidad\n• Planes y precios\n\n¿Qué te gustaría saber?',
+    'precio': 'Tenemos diferentes planes:\n\n🎵 **Gratis**: Registro, matches básicos, eventos públicos\n💎 **Premium $9.99/mes**: Más matches, eventos exclusivos, filtros avanzados\n🎤 **Pro Artist $19.99/mes**: Herramientas profesionales, estadísticas, promoción\n\n¿Te interesa algún plan específico?',
+    'artistas': '¡Moodmatch es perfecto para conectar con artistas! Puedes:\n\n🎤 Descubrir artistas emergentes antes que nadie\n💬 Hablar directamente con tus artistas favoritos\n🎵 Asistir a sus eventos exclusivos\n📱 Recibir notificaciones de sus lanzamientos\n🤝 Colaborar en proyectos musicales\n\n¡Es como tener backstage pass con todos los artistas!',
+    'música': '¡La música es el corazón de Moodmatch! ❤️\n\n🎵 **Descubre nueva música** basada en tu personalidad\n📱 **Comparte playlists** con matches perfectos\n🎤 **Conecta con artistas** que crean tu música favorita\n🎶 **Asiste a eventos** musicales exclusivos\n📀 **Compra música** directamente de los artistas\n\n¿Buscas algún género específico o artista?',
+    'registro': 'El registro es rapidísimo:\n\n1️⃣ Email o redes sociales\n2️⃣ Gustos musicales (elige tus géneros favoritos)\n3️⃣ Test de personalidad (divertido y revelador)\n4️⃣ Foto opcional (mejor matching con foto)\n5️⃣ Verificación facial (30 segundos)\n\n¡Listo en menos de 5 minutos!',
+    'perfil': 'Tu perfil en Moodmatch es tu carta de presentación musical:\n\n🎵 **Géneros favoritos** - Lo que realmente te apasiona\n🧠 **Personalidad** - Cómo te define la música\n📸 **Fotos/videos** - Muestra tu estilo musical\n🎤 **Artistas preferidos** - Tus influencias\n📱 **Estado actual** - ¿Qué estás escuchando ahora?\n\nCompleta tu perfil para mejores matches!',
+    'eventos': '¡Los eventos son increíbles en Moodmatch!\n\n🎉 **Live Parties**: Artistas creando en tiempo real\n🎵 **Lanzamientos exclusivos**: Nueva música antes que nadie\n🤝 **Meet & Greets**: Conoce a tus artistas favoritos\n🎪 **Festivales virtuales**: Experiencias inmersivas\n📚 **Workshops**: Aprende sobre música\n🎭 **Conciertos presenciales**: Eventos reales de la comunidad',
+    'matching': 'Nuestro algoritmo es único:\n\n🎯 **IA avanzada** analiza tu personalidad musical\n🧠 **Machine learning** entiende tus patrones de gusto\n😊 **Estado emocional** considera cómo te sientes\n🔥 **Compatibilidad profunda** más allá de géneros superficiales\n📊 **Aprendizaje continuo** mejora con cada interacción\n\nResultado: **Matches que realmente conectan contigo**',
+    'seguridad': 'Tu seguridad es nuestra misión:\n\n🔐 **Verificación facial obligatoria** para todos\n🚫 **Cero datos personales compartidos** (ni emails ni teléfonos)\n💬 **Comunicación 100% interna** en la plataforma\n👥 **Moderación 24/7** por humanos\n🛡️ **Reportes y bloqueos** instantáneos\n🎵 **Enfoque en música auténtica** reduce riesgos\n\n¡Conecta con confianza!',
+    'premium': 'Premium desbloquea el siguiente nivel:\n\n⭐ **Matches ilimitados** diarios\n🎫 **Acceso VIP** a eventos exclusivos\n🔍 **Filtros avanzados** de búsqueda\n💬 **Contacto directo** con artistas famosos\n📊 **Estadísticas detalladas** de tu actividad\n🎵 **Playlists premium** curadas por expertos\n🎤 **Herramientas de promoción** si eres artista\n\n¿Te gustaría saber más sobre algún beneficio?',
+    'default': 'Interesante pregunta. Déjame ayudarte con eso. Moodmatch es una plataforma musical única que conecta personas a través de la música y la personalidad. \n\nPuedo ayudarte con:\n• Funcionamiento de la plataforma\n• Registro y creación de perfil\n• Sistema de matching con IA\n• Eventos y actividades\n• Seguridad y privacidad\n• Planes y precios\n\n¿Puedes ser más específico con tu pregunta? ¡Estoy aquí para ayudarte! 😊'
 };
 
 const addMessage = (content, isUser = false) => {
@@ -280,12 +308,49 @@ const getBotResponse = (userMessage) => {
     return chatbotResponses.default;
 };
 
+const showTypingIndicator = () => {
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'chatbot-message bot-message';
+    typingDiv.id = 'typing-indicator';
+
+    const avatarDiv = document.createElement('div');
+    avatarDiv.className = 'message-avatar';
+    avatarDiv.innerHTML = '<i class="fas fa-robot"></i>';
+
+    const typingIndicatorDiv = document.createElement('div');
+    typingIndicatorDiv.className = 'typing-indicator';
+
+    for (let i = 0; i < 3; i++) {
+        const dot = document.createElement('span');
+        typingIndicatorDiv.appendChild(dot);
+    }
+
+    typingDiv.appendChild(avatarDiv);
+    typingDiv.appendChild(typingIndicatorDiv);
+    chatbotMessages.appendChild(typingDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+    return typingDiv;
+};
+
+const hideTypingIndicator = (typingDiv) => {
+    if (typingDiv && typingDiv.parentNode) {
+        typingDiv.parentNode.removeChild(typingDiv);
+    }
+};
+
 const sendUserMessage = (message) => {
     addMessage(message, true);
+    const typingDiv = showTypingIndicator();
+
+    // Simulate realistic typing time based on response length
+    const response = getBotResponse(message);
+    const typingTime = Math.min(500 + (response.length * 30), 2500);
+
     setTimeout(() => {
-        const response = getBotResponse(message);
+        hideTypingIndicator(typingDiv);
         addMessage(response, false);
-    }, 1000);
+    }, typingTime);
 };
 
 if (chatbotToggle && chatbotContainer) {
@@ -337,12 +402,110 @@ if (chatbotToggle && chatbotContainer) {
         });
     }
 
-    // Close on escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && chatbotContainer.classList.contains('show')) {
-            closeChat();
+// Close on escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && chatbotContainer.classList.contains('show')) {
+        closeChat();
+    }
+});
+
+// Professional chatbot enhancements
+const chatbotInput = document.getElementById('chatbotInput');
+const sendMessage = document.getElementById('sendMessage');
+
+// Add input validation and UX improvements
+if (chatbotInput) {
+    chatbotInput.addEventListener('input', (e) => {
+        const value = e.target.value.trim();
+        if (sendMessage) {
+            sendMessage.style.opacity = value ? '1' : '0.5';
+            sendMessage.disabled = !value;
         }
     });
+
+    // Auto-resize textarea functionality (if converted to textarea)
+    chatbotInput.addEventListener('input', (e) => {
+        e.target.style.height = 'auto';
+        e.target.style.height = Math.min(e.target.scrollHeight, 100) + 'px';
+    });
+}
+
+// Add message timestamps (optional professional feature)
+const addMessageWithTimestamp = (content, isUser = false) => {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `chatbot-message ${isUser ? 'user-message' : 'bot-message'}`;
+
+    const avatarDiv = document.createElement('div');
+    avatarDiv.className = 'message-avatar';
+    avatarDiv.innerHTML = `<i class="fas fa-${isUser ? 'user' : 'robot'}"></i>`;
+
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'message-content';
+
+    // Handle line breaks in responses
+    if (typeof content === 'string') {
+        contentDiv.innerHTML = content.replace(/\n/g, '<br>');
+    } else {
+        contentDiv.textContent = content;
+    }
+
+    messageDiv.appendChild(avatarDiv);
+    messageDiv.appendChild(contentDiv);
+    chatbotMessages.appendChild(messageDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+    return messageDiv;
+};
+
+// Enhanced message sending with better UX
+const sendUserMessageEnhanced = (message) => {
+    // Clear input immediately for better UX
+    const originalPlaceholder = chatbotInput.placeholder;
+    chatbotInput.placeholder = 'Enviando...';
+    chatbotInput.disabled = true;
+    if (sendMessage) sendMessage.disabled = true;
+
+    addMessageWithTimestamp(message, true);
+
+    const typingDiv = showTypingIndicator();
+    const response = getBotResponse(message);
+    const typingTime = Math.min(800 + (response.length * 25), 3000);
+
+    setTimeout(() => {
+        hideTypingIndicator(typingDiv);
+        addMessageWithTimestamp(response, false);
+
+        // Re-enable input
+        chatbotInput.placeholder = originalPlaceholder;
+        chatbotInput.disabled = false;
+        chatbotInput.focus();
+        if (sendMessage) sendMessage.disabled = false;
+    }, typingTime);
+};
+
+// Update the event listeners to use enhanced function
+if (sendMessage) {
+    sendMessage.addEventListener('click', () => {
+        const message = chatbotInput.value.trim();
+        if (message) {
+            sendUserMessageEnhanced(message);
+            chatbotInput.value = '';
+        }
+    });
+}
+
+if (chatbotInput) {
+    chatbotInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            const message = chatbotInput.value.trim();
+            if (message) {
+                sendUserMessageEnhanced(message);
+                chatbotInput.value = '';
+            }
+        }
+    });
+}
 }
 
 

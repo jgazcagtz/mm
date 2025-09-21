@@ -1154,6 +1154,7 @@ footer::before {
     right: 20px;
     width: min(400px, 90vw);
     height: min(600px, 80vh);
+    max-height: calc(100vh - 140px); /* Account for header and other elements */
     background: rgba(26, 26, 46, 0.95);
     backdrop-filter: blur(20px);
     border-radius: 20px;
@@ -1201,6 +1202,7 @@ footer::before {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
     z-index: 5;
+    flex-shrink: 0; /* Prevent header from shrinking */
 }
 
 .chatbot-avatar {
@@ -1264,6 +1266,8 @@ footer::before {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    min-height: 0; /* Important for flex child */
+    max-height: calc(100% - 120px); /* Account for header and input */
 }
 
 .chatbot-message {
@@ -1428,16 +1432,20 @@ footer::before {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    flex-shrink: 0;
+    max-height: 50vh; /* Prevent it from taking too much space */
+    overflow-y: auto;
 }
 
 .chatbot-options {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    max-height: 400px;
+    flex: 1;
     overflow-y: auto;
     padding: 8px;
     box-sizing: border-box;
+    min-height: 0; /* Important for flex */
 }
 
 .chatbot-options::-webkit-scrollbar {
@@ -1575,10 +1583,13 @@ footer::before {
 
     .chatbot-messages {
         padding: 16px;
+        max-height: calc(100% - 100px); /* Ensure space for header and options */
     }
 
     .chatbot-input-container {
         padding: 16px;
+        max-height: 40vh;
+        overflow-y: auto;
     }
 
     .message-content {
@@ -1629,6 +1640,7 @@ footer::before {
 
     .chatbot-input-container {
         padding: 12px;
+        max-height: 35vh;
     }
 
     .message-content {
